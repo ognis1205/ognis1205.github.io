@@ -106,9 +106,6 @@ export const Component: React.FunctionComponent<Props> = ({
                 <NextLink href="/works" passHref>
                   <Chakra.MenuItem as={Chakra.Link}>Works</Chakra.MenuItem>
                 </NextLink>
-                <NextLink href="/posts" passHref>
-                  <Chakra.MenuItem as={Chakra.Link}>Posts</Chakra.MenuItem>
-                </NextLink>
                 <Chakra.MenuItem
                   as={Chakra.Link}
                   href="https://github.com/ognis1205/ognis1205-homepage"
