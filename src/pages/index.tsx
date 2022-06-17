@@ -11,7 +11,8 @@ import * as Layout from '@/components/layout';
 import * as Loaders from '@/utils/loaders';
 
 const ProfileImage = Chakra.chakra(Image, {
-  shouldForwardProp: (prop) => ['width', 'height', 'src', 'alt'].includes(prop),
+  shouldForwardProp: (prop) =>
+    ['width', 'height', 'src', 'alt', 'loader'].includes(prop),
 });
 
 const Index: React.FunctionComponent<

@@ -14,6 +14,9 @@ const nextConfig = {
     })
     return config;
   },
+  images: {
+    loader: "custom"
+  },
 };
 
 export default nextConfig;
