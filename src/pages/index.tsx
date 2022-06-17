@@ -8,6 +8,7 @@ import * as ChakraIcon from '@chakra-ui/icons';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import * as Layout from '@/components/layout';
+import * as Loaders from '@/utils/loaders';
 
 const ProfileImage = Chakra.chakra(Image, {
   shouldForwardProp: (prop) => ['width', 'height', 'src', 'alt'].includes(prop),
@@ -61,6 +62,7 @@ const Index: React.FunctionComponent<
               borderRadius="full"
               width="100%"
               height="100%"
+              loader={Loaders.DefaultLoader}
             />
           </Chakra.Box>
         </Chakra.Box>

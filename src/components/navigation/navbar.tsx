@@ -77,7 +77,7 @@ export const Component: React.FunctionComponent<Props> = ({
           </MyLink>
           <MyLink
             target="_blank"
-            href="https://github.com/ognis1205/ognis1205-homepage"
+            href="https://github.com/ognis1205/ognis1205.github.io"
             path={path}
             display="inline-flex"
             alignItems="center"
@@ -108,7 +108,7 @@ export const Component: React.FunctionComponent<Props> = ({
                 </NextLink>
                 <Chakra.MenuItem
                   as={Chakra.Link}
-                  href="https://github.com/ognis1205/ognis1205-homepage"
+                  href="https://github.com/ognis1205/ognis1205.github.io"
                 >
                   View Source
                 </Chakra.MenuItem>
