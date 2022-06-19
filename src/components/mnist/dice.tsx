@@ -17,7 +17,7 @@ export const Component: React.FunctionComponent<
   const container = React.useRef<HTMLDivElement>(null);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [isLoading, setLoading] = React.useState<boolean>(true);
+  //const [isLoading, setLoading] = React.useState<boolean>(true);
 
   const [renderer, setRenderer] = React.useState<THREE.WebGLRenderer>(null);
 
@@ -147,7 +147,7 @@ export const Component: React.FunctionComponent<
 
       animate();
 
-      setLoading(false);
+      //setLoading(false);
 
       return () => {
         cancelAnimationFrame(req);
