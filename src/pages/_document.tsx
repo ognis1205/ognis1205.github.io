@@ -22,12 +22,7 @@ export default class Home extends Document {
   render(): React.ReactElement {
     return (
       <NextDocument.Html lang="en">
-        <NextDocument.Head>
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=optional"
-          />
-        </NextDocument.Head>
+        <NextDocument.Head />
         <body>
           <Chakra.ColorModeScript
             initialColorMode={ChakraConfig.theme.config.initialColorMode}

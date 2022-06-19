@@ -41,6 +41,7 @@ export const Component: React.FunctionComponent<
             height={20}
             alt="logo"
             loader={Loaders.DefaultLoader}
+            unoptimized={true}
           />
           <Chakra.Text
             color={Chakra.useColorModeValue('gray.800', 'whiteAlpha.900')}

@@ -15,6 +15,7 @@ varying vec2 vUv;
 
 vec4 hallucinate(vec2 uv, vec2 z) {
     vec4 p = vec4(uv.xy, z.xy);
+
     vec4 f0_0 = sin(
       p.x * vec4(.3381,3.118,-1.48,-5.781) + 
       p.y * vec4(1.09,1.532,5.283,-3.329) + 
@@ -447,12 +448,8 @@ vec4 hallucinate(vec2 uv, vec2 z) {
       dot(f3_8, vec4(.108,-.1443,.04681,.1334)) + 
       dot(f3_9, vec4(.1183,-.1329,-.1193,.1099)) + 
       0.530;
-    return vec4(f, f, f, 1.);
-}
 
-float modI(float a, float b) {
-    float m = a - floor((a + 0.5) / b) * b;
-    return floor(m + 0.5);
+    return vec4(f, f, f, 1.);
 }
 
 vec4 line(float side) {

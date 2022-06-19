@@ -16,6 +16,7 @@ export const Component: React.FunctionComponent<
 > = (): React.ReactElement => {
   const container = React.useRef<HTMLDivElement>(null);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isLoading, setLoading] = React.useState<boolean>(true);
 
   const [renderer, setRenderer] = React.useState<THREE.WebGLRenderer>(null);
@@ -163,9 +164,5 @@ export const Component: React.FunctionComponent<
     };
   }, [renderer, handleWindowResize]);
 
-  return (
-    <Container.Box ref={container}>
-      {isLoading && <Container.Loader />}
-    </Container.Box>
-  );
+  return <Container.Box ref={container} />;
 };

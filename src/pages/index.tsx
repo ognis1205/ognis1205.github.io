@@ -12,7 +12,7 @@ import * as Loaders from '@/utils/loaders';
 
 const ProfileImage = Chakra.chakra(Image, {
   shouldForwardProp: (prop) =>
-    ['width', 'height', 'src', 'alt', 'loader'].includes(prop),
+    ['width', 'height', 'src', 'alt', 'loader', 'unoptimized'].includes(prop),
 });
 
 const Index: React.FunctionComponent<
@@ -64,6 +64,7 @@ const Index: React.FunctionComponent<
               width="100%"
               height="100%"
               loader={Loaders.DefaultLoader}
+              unoptimized={true}
             />
           </Chakra.Box>
         </Chakra.Box>

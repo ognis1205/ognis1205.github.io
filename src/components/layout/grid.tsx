@@ -32,6 +32,7 @@ export const Link: React.FunctionComponent<LinkProps> = ({
           className="grid-item-thumbnail"
           loading="lazy"
           loader={Loaders.DefaultLoader}
+          unoptimized={true}
         />
         <Chakra.LinkOverlay href={href} target="_blank">
           <Chakra.Text mt={2}>{title}</Chakra.Text>
@@ -64,6 +65,7 @@ export const Work: React.FunctionComponent<WorkProps> = ({
             alt={title}
             className="grid-item-thumbnail"
             placeholder="blur"
+            unoptimized={true}
           />
           <Chakra.LinkOverlay href={`/works/${id}`}>
             <Chakra.Text mt={2} fontSize={20}>
