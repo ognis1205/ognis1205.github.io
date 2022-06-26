@@ -17,7 +17,7 @@ export const Component: React.FunctionComponent<
   const container = React.useRef<HTMLDivElement>(null);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  //const [isLoading, setLoading] = React.useState<boolean>(true);
+  const [isLoading, setLoading] = React.useState<boolean>(true);
 
   const [renderer, setRenderer] = React.useState<THREE.WebGLRenderer>(null);
 
@@ -145,9 +145,10 @@ export const Component: React.FunctionComponent<
         r.render(scene, c);
       };
 
-      animate();
-
-      //setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+        animate();
+      }, 1000);
 
       return () => {
         cancelAnimationFrame(req);
@@ -164,5 +165,9 @@ export const Component: React.FunctionComponent<
     };
   }, [renderer, handleWindowResize]);
 
-  return <Container.Box ref={container} />;
+  return (
+    <Container.Box ref={container}>
+      {isLoading && <Container.Spinner />}
+    </Container.Box>
+  );
 };
