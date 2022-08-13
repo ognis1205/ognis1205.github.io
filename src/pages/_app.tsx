@@ -45,4 +45,8 @@ const Home: React.FC<NextApp.AppProps> = ({
   );
 };
 
+export function reportWebVitals(metric: NextApp.NextWebVitalsMetric) {
+  console.log(metric);
+}
+
 export default Home;

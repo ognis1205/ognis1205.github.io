@@ -54,17 +54,17 @@ export const Component: React.FunctionComponent<
       const w = container.current.clientWidth;
       const h = container.current.clientHeight;
 
-      const r = new THREE.WebGLRenderer({
+      const renderer_ = new THREE.WebGLRenderer({
         antialias: true,
         alpha: true,
       });
-      r.setPixelRatio(window.devicePixelRatio);
-      r.setSize(w, h);
-      r.outputEncoding = THREE.sRGBEncoding;
-      container.current.appendChild(r.domElement);
-      setRenderer(r);
+      renderer_.setPixelRatio(window.devicePixelRatio);
+      renderer_.setSize(w, h);
+      renderer_.outputEncoding = THREE.sRGBEncoding;
+      container.current.appendChild(renderer_.domElement);
+      setRenderer(renderer_);
 
-      const c = new THREE.OrthographicCamera(
+      const camera_ = new THREE.OrthographicCamera(
         -1.0 * (h * 0.005 + 4.8),
         h * 0.005 + 4.8,
         h * 0.005 + 4.8,
@@ -72,13 +72,13 @@ export const Component: React.FunctionComponent<
         0.01,
         50000
       );
-      c.position.copy(initialCameraPosition);
-      c.lookAt(target);
-      setCamera(c);
+      camera_.position.copy(initialCameraPosition);
+      camera_.lookAt(target);
+      setCamera(camera_);
 
       scene.add(new THREE.AmbientLight(0xcccccc, 1));
 
-      const o = new OrbitControls(c, r.domElement);
+      const o = new OrbitControls(camera_, renderer_.domElement);
       o.autoRotate = true;
       o.target = target;
       setControls(o);
@@ -125,6 +125,7 @@ export const Component: React.FunctionComponent<
       let req = null;
       let step = 0;
       let frame = 0;
+
       const animate = () => {
         req = requestAnimationFrame(animate);
         step++;
@@ -133,26 +134,28 @@ export const Component: React.FunctionComponent<
         if (frame <= 100) {
           const pos = initialCameraPosition;
           const rot = -easeOutCirc(frame / 120) * Math.PI * 20;
-          c.position.y = 10;
-          c.position.x = pos.x * Math.cos(rot) + pos.z * Math.sin(rot);
-          c.position.z = pos.z * Math.cos(rot) - pos.x * Math.sin(rot);
-          c.lookAt(target);
+          camera_.position.y = 10;
+          camera_.position.x = pos.x * Math.cos(rot) + pos.z * Math.sin(rot);
+          camera_.position.z = pos.z * Math.cos(rot) - pos.x * Math.sin(rot);
+          camera_.lookAt(target);
         } else {
           o.update();
         }
 
         dice.material.uniforms.time.value = step / (60.0 * 5);
-        r.render(scene, c);
+        renderer_.render(scene, camera_);
       };
 
-      setTimeout(() => {
-        setLoading(false);
+      (async () => {
+        renderer_.compile(scene, camera_);
+      })().then(() => {
         animate();
-      }, 1000);
+        setLoading(false);
+      });
 
       return () => {
         cancelAnimationFrame(req);
-        renderer.dispose();
+        renderer_.dispose();
       };
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -167,7 +170,7 @@ export const Component: React.FunctionComponent<
 
   return (
     <Container.Box ref={container}>
-      {isLoading && <Container.Spinner />}
+      <Container.Spinner fadeIn={isLoading} />
     </Container.Box>
   );
 };

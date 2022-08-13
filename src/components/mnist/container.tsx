@@ -25,23 +25,21 @@ export const Box = Chakra.forwardRef<Chakra.BoxProps, 'div'>(
   }
 );
 
-export const Spinner: React.FunctionComponent<
-  Record<string, never>
-> = (): React.ReactElement => (
-  <Chakra.Spinner
-    size="xl"
-    position="absolute"
-    left="50%"
-    top="50%"
-    ml="calc(0px - var(--spinner-size) / 2)"
-    mt="calc(0px - var(--spinner-size))"
-  />
-);
+export type SpinnerProps = {
+  fadeIn: boolean;
+};
 
-export const Loader: React.FunctionComponent<
-  Record<string, never>
-> = (): React.ReactElement => (
-  <Box>
-    <Spinner />
-  </Box>
+export const Spinner: React.FunctionComponent<SpinnerProps> = ({
+  fadeIn,
+}: SpinnerProps): React.ReactElement => (
+  <Chakra.Fade in={fadeIn}>
+    <Chakra.Spinner
+      size="xl"
+      position="absolute"
+      left="50%"
+      top="50%"
+      ml="calc(0px - var(--spinner-size) / 2)"
+      mt="calc(0px - var(--spinner-size))"
+    />
+  </Chakra.Fade>
 );

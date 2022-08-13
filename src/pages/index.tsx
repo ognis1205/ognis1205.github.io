@@ -5,6 +5,7 @@
 import * as React from 'react';
 import * as Chakra from '@chakra-ui/react';
 import * as ChakraIcon from '@chakra-ui/icons';
+import * as ReactIcon from 'react-icons/io5';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import * as Layout from '@/components/layout';
@@ -175,6 +176,36 @@ const Index: React.FunctionComponent<
         <Layout.Paragraph>
           Cooking, Music, Programming, Machine Learning, Cats
         </Layout.Paragraph>
+      </Layout.Section>
+
+      <Layout.Section delay={0.3}>
+        <Chakra.Heading as="h3" variant="section-title">
+          Activities ☻
+        </Chakra.Heading>
+        <Chakra.List>
+          <Chakra.ListItem>
+            <Chakra.Link href="https://github.com/ognis1205" target="_blank">
+              <Chakra.Button
+                variant="ghost"
+                colorScheme="teal"
+                leftIcon={<ReactIcon.IoLogoGithub />}
+              >
+                @ognis1205
+              </Chakra.Button>
+            </Chakra.Link>
+          </Chakra.ListItem>
+          <Chakra.ListItem>
+            <Chakra.Link href="https://twitter.com/ognis1205" target="_blank">
+              <Chakra.Button
+                variant="ghost"
+                colorScheme="teal"
+                leftIcon={<ReactIcon.IoLogoTwitter />}
+              >
+                @ognis1205
+              </Chakra.Button>
+            </Chakra.Link>
+          </Chakra.ListItem>
+        </Chakra.List>
       </Layout.Section>
     </Chakra.Container>
   </Layout.Article>
