@@ -75,6 +75,9 @@ export const Component: React.FunctionComponent<Props> = ({
           <MyLink href="/works" path={path}>
             Works
           </MyLink>
+          <MyLink href="/timeline" path={path}>
+            Timeline
+          </MyLink>
           <MyLink
             target="_blank"
             href="https://github.com/ognis1205/ognis1205.github.io"

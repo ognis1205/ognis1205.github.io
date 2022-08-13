@@ -3,3 +3,4 @@
  * @copyright Shingo OKAWA 2022
  */
 export { Component as Fonts } from './fonts';
+export { Component as WorkInProgress } from './wip';

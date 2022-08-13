@@ -4,7 +4,7 @@
  */
 import * as React from 'react';
 import * as Chakra from '@chakra-ui/react';
-import Link from 'next/link';
+import NextLink from 'next/link';
 import Image from 'next/image';
 import styled from '@emotion/styled';
 import * as Loaders from '@/utils/loaders';
@@ -32,7 +32,7 @@ export const Component: React.FunctionComponent<
   const logo = `/images/paw${Chakra.useColorModeValue('', '-dark')}.png`;
 
   return (
-    <Link href="/" scroll={false}>
+    <NextLink href="/" scroll={false}>
       <a>
         <LogoBox>
           <Image
@@ -53,6 +53,6 @@ export const Component: React.FunctionComponent<
           </Chakra.Text>
         </LogoBox>
       </a>
-    </Link>
+    </NextLink>
   );
 };
