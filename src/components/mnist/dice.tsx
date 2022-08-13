@@ -78,10 +78,10 @@ export const Component: React.FunctionComponent<
 
       scene.add(new THREE.AmbientLight(0xcccccc, 1));
 
-      const o = new OrbitControls(camera_, renderer_.domElement);
-      o.autoRotate = true;
-      o.target = target;
-      setControls(o);
+      const orbit_ = new OrbitControls(camera_, renderer_.domElement);
+      orbit_.autoRotate = true;
+      orbit_.target = target;
+      setControls(orbit_);
 
       const diceG = new THREE.BoxBufferGeometry(2, 2, 2);
       diceG.setAttribute(
@@ -139,7 +139,7 @@ export const Component: React.FunctionComponent<
           camera_.position.z = pos.z * Math.cos(rot) - pos.x * Math.sin(rot);
           camera_.lookAt(target);
         } else {
-          o.update();
+          orbit_.update();
         }
 
         dice.material.uniforms.time.value = step / (60.0 * 5);

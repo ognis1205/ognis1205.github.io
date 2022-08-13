@@ -7,6 +7,7 @@ import * as Chakra from '@chakra-ui/react';
 import * as Layout from '@/components/layout';
 import mutad from '@/assets/images/mutad.gif';
 import nests from '@/assets/images/nests.gif';
+import siren from '@/assets/images/siren.gif';
 import slam from '@/assets/images/slam.gif';
 import tda from '@/assets/images/tda.png';
 
@@ -43,12 +44,12 @@ const Works: React.FunctionComponent<
 
         <Layout.Section delay={0.1}>
           <Layout.GridLink
-            href="https://github.com/ognis1205/mutad"
-            title="Mutad"
-            thumbnail={mutad}
+            href="https://github.com/ognis1205/siren-gan"
+            title="SIREN-GAN"
+            thumbnail={siren}
           >
-            A Realtime Data Processing and Search Engine Implementation,
-            visualizing Tweet geographic data in real-time.
+            A SIREN GAN implementation in GLSL that hallucinates new
+            hand-written digits in real-time.
           </Layout.GridLink>
         </Layout.Section>
         <Layout.Section delay={0.1}>
@@ -59,6 +60,16 @@ const Works: React.FunctionComponent<
           >
             An Apache Spark package providing large scale Topological Data
             Analysis functionalities.
+          </Layout.GridLink>
+        </Layout.Section>
+        <Layout.Section delay={0.1}>
+          <Layout.GridLink
+            href="https://github.com/ognis1205/mutad"
+            title="Mutad"
+            thumbnail={mutad}
+          >
+            A Realtime Data Processing and Search Engine Implementation,
+            visualizing Tweet geographic data in real-time.
           </Layout.GridLink>
         </Layout.Section>
       </Chakra.SimpleGrid>
