@@ -92,7 +92,7 @@ const Index: React.FunctionComponent<
           .
         </Layout.Paragraph>
         <Chakra.Box textAlign="center" my={4}>
-          <NextLink href="/works" passHref scroll={false}>
+          <NextLink href="/portfolio" passHref scroll={false}>
             <Chakra.Button
               rightIcon={<ChakraIcon.ChevronRightIcon />}
               colorScheme="teal"
@@ -206,7 +206,10 @@ const Index: React.FunctionComponent<
             </Chakra.Link>
           </Chakra.ListItem>
           <Chakra.ListItem>
-            <Chakra.Link href="https://www.instagram.com/ognis1205" target="_blank">
+            <Chakra.Link
+              href="https://www.instagram.com/ognis1205"
+              target="_blank"
+            >
               <Chakra.Button
                 variant="ghost"
                 colorScheme="teal"

@@ -1,5 +1,5 @@
 /**
- * @fileoverview Defines /works.
+ * @fileoverview Defines /portfolio.
  * @copyright Shingo OKAWA 2022
  */
 import * as React from 'react';
@@ -11,13 +11,13 @@ import siren from '@/assets/images/siren.gif';
 import slam from '@/assets/images/slam.gif';
 import tda from '@/assets/images/tda.png';
 
-const Works: React.FunctionComponent<
+const Portfolio: React.FunctionComponent<
   Record<string, never>
 > = (): React.ReactElement => (
-  <Layout.Article title="Works">
+  <Layout.Article title="Porftolio">
     <Chakra.Container>
       <Chakra.Heading as="h3" fontSize={20} mb={4}>
-        Works
+        Portfolio
       </Chakra.Heading>
 
       <Chakra.SimpleGrid columns={[1, 1, 2]} gap={6}>
@@ -77,4 +77,4 @@ const Works: React.FunctionComponent<
   </Layout.Article>
 );
 
-export default Works;
+export default Portfolio;

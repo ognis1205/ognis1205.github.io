@@ -72,8 +72,8 @@ export const Component: React.FunctionComponent<Props> = ({
           flexGrow={1}
           mt={{ base: 4, md: 0 }}
         >
-          <MyLink href="/works" path={path}>
-            Works
+          <MyLink href="/portfolio" path={path}>
+            Portfolio
           </MyLink>
           <MyLink href="/timeline" path={path}>
             Timeline
@@ -106,8 +106,8 @@ export const Component: React.FunctionComponent<Props> = ({
                 <NextLink href="/" passHref>
                   <Chakra.MenuItem as={Chakra.Link}>About</Chakra.MenuItem>
                 </NextLink>
-                <NextLink href="/works" passHref>
-                  <Chakra.MenuItem as={Chakra.Link}>Works</Chakra.MenuItem>
+                <NextLink href="/portfolio" passHref>
+                  <Chakra.MenuItem as={Chakra.Link}>Portfolio</Chakra.MenuItem>
                 </NextLink>
                 <NextLink href="/timeline" passHref>
                   <Chakra.MenuItem as={Chakra.Link}>Timeline</Chakra.MenuItem>
