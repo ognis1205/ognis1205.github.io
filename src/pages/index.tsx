@@ -205,6 +205,17 @@ const Index: React.FunctionComponent<
               </Chakra.Button>
             </Chakra.Link>
           </Chakra.ListItem>
+          <Chakra.ListItem>
+            <Chakra.Link href="https://www.instagram.com/ognis1205" target="_blank">
+              <Chakra.Button
+                variant="ghost"
+                colorScheme="teal"
+                leftIcon={<ReactIcon.IoLogoInstagram />}
+              >
+                @ognis1205
+              </Chakra.Button>
+            </Chakra.Link>
+          </Chakra.ListItem>
         </Chakra.List>
       </Layout.Section>
     </Chakra.Container>
