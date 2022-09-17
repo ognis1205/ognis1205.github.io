@@ -16,7 +16,7 @@ const LogoBox = styled.span`
   align-items: center;
   height: 30px;
   line-height: 20px;
-  padding: 10px;
+  padding: 20px;
   img {
     transition: 200ms ease;
     transform: rotate(-20deg);
@@ -32,7 +32,7 @@ export const Component: React.FunctionComponent<
   const logo = `/images/paw${Chakra.useColorModeValue('', '-dark')}.png`;
 
   return (
-    <NextLink href="/" scroll={false}>
+    <NextLink href="/" passHref scroll={false}>
       <a>
         <LogoBox>
           <Image
@@ -45,9 +45,8 @@ export const Component: React.FunctionComponent<
           />
           <Chakra.Text
             color={Chakra.useColorModeValue('gray.800', 'whiteAlpha.900')}
-            fontFamily='M PLUS Rounded 1c", sans-serif'
             fontWeight="bold"
-            ml={3}
+            pl={1}
           >
             Shingo OKAWA
           </Chakra.Text>
