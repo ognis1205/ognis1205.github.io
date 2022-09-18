@@ -4,7 +4,7 @@
  */
 import * as React from 'react';
 //import * as THREE from 'three';
-import bind from 'bind-decorator';
+//import bind from 'bind-decorator';
 //import createWorker from 'offscreen-canvas/create-worker';
 
 export const MessageType = {
@@ -20,15 +20,16 @@ export type MessageType = typeof MessageType[keyof typeof MessageType];
 export abstract class Proxy {
   public constructor(
     readonly worker: Worker,
-    readonly container: HTMLElement
-  ): void {
+    readonly container: HTMLElement,
+    // tslint:disable-next-line:no-empty
+    readonly configEventListener: () => void = () => {},
+  ) {
     this.worker.postMessage({
-      type: MessageType.MAKE,
+      type: MessageType.CONSTRUCT,
     });
   }
 
-  @bind
-  init(offscreenCanvas: OffscreenCanvas): void {
+  public init = (offscreenCanvas: OffscreenCanvas) => {
     this.worker.postMessage(
       {
         type: MessageType.INIT,
@@ -39,20 +40,14 @@ export abstract class Proxy {
     this.configEventListener();
   }
 
-  abstract configEventListener(): void {
-    // children must override listenerToEvent()
-  }
-
-  @bind
-  sendEventMessage(event: React.SyntheticEvent): void {
+  public sendEventMessage = (event: React.SyntheticEvent) => {
     this.worker.postMessage({
       type: MessageType.EVENT,
       event,
     });
   }
 
-  @bind
-  dispose(): void {
+  public dispose = () => {
     this.worker.postMessage({
       type: MessageType.DISPOSE,
     });
