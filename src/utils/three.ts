@@ -4,7 +4,6 @@
  */
 import * as React from 'react';
 import * as THREE from 'three';
-//import createWorker from 'offscreen-canvas/create-worker';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const NOOP = () => {};
@@ -48,12 +47,45 @@ const isOffscreenEvent = (
   (event as OffscreenEvent).width !== undefined &&
   (event as OffscreenEvent).height !== undefined;
 
-export abstract class Proxy {
-  abstract configEventListener: () => void;
+const copyProperties = (src: unknown, keys: string[]): unknown => {
+  const ret = {};
+  keys.forEach((key: string) => {
+    ret[key] = src[key];
+  });
+  return ret;
+};
 
+const MOUSE_EVENT_KEYS = [
+  'type',
+  'pointerType',
+  'button',
+  'clientX',
+  'clientY',
+  'ctrlKey',
+  'metaKey',
+  'shiftKey',
+];
+
+const WHEEL_EVENT_KEYS = ['type', 'deltaY'];
+
+const KEYBOARD_EVENT_KEYS = ['type', 'keyCode'];
+
+const TOUCH_EVENT_KEYS = ['type'];
+
+const TOUCH_KEYS = ['pageX', 'pageY'];
+
+export abstract class Proxy {
   public constructor(readonly worker: Worker, readonly container: HTMLElement) {
     this.worker.postMessage({
       type: MessageType.CONSTRUCT,
+    });
+  }
+
+  public abstract configEventListener(): void;
+
+  public dispose(): void {
+    this.worker.postMessage({
+      type: MessageType.DISPOSE,
     });
   }
 
@@ -73,15 +105,183 @@ export abstract class Proxy {
       type: MessageType.EVENT,
       event,
     });
-
-  public dispose = (): void =>
-    this.worker.postMessage({
-      type: MessageType.DISPOSE,
-    });
 }
 
-//class OrbitControlsProxy extends Proxy {
-//}
+export class OrbitControlsProxy extends Proxy {
+  public constructor(readonly worker: Worker, readonly container: HTMLElement) {
+    super(worker, container);
+  }
+
+  public configEventListener(): void {
+    this.handleResize();
+    window.addEventListener('resize', this.handleResize, {
+      capture: true,
+      passive: false,
+    });
+    this.container.addEventListener('pointerdown', this.handlePointerDown, {
+      capture: true,
+      passive: false,
+    });
+    this.container.addEventListener('wheel', this.handleWheelEvent, {
+      capture: true,
+      passive: false,
+    });
+    this.container.addEventListener('keydown', this.handleKeyboardEvent, {
+      capture: true,
+      passive: false,
+    });
+    this.container.addEventListener('keyup', this.handleKeyboardEvent, {
+      capture: true,
+      passive: false,
+    });
+    this.container.addEventListener('touchstart', this.handleTouchEvent, {
+      capture: true,
+      passive: false,
+    });
+    this.container.addEventListener('touchmove', this.handleTouchEvent, {
+      capture: true,
+      passive: false,
+    });
+    this.container.addEventListener('touchend', this.handleTouchEvent, {
+      capture: true,
+      passive: false,
+    });
+  }
+
+  public dispose(): void {
+    super.dispose();
+    window.removeEventListener('resize', this.handleResize);
+    this.container.removeEventListener('pointerdown', this.handlePointerDown);
+    this.container.ownerDocument.removeEventListener(
+      'pointermove',
+      this.handlePointerMove
+    );
+    this.container.ownerDocument.removeEventListener(
+      'pointerup',
+      this.handlePointerUp
+    );
+    this.container.removeEventListener('wheel', this.handleWheelEvent);
+    this.container.removeEventListener('keydown', this.handleKeyboardEvent);
+    this.container.removeEventListener('keyup', this.handleKeyboardEvent);
+    this.container.removeEventListener('touchstart', this.handleTouchEvent);
+    this.container.removeEventListener('touchmove', this.handleTouchEvent);
+    this.container.removeEventListener('touchend', this.handleTouchEvent);
+  }
+
+  public handleResize = (): void => {
+    const rect = this.container.getBoundingClientRect();
+    this.worker.postMessage({
+      type: MessageType.RESIZE,
+      top: rect.top,
+      left: rect.left,
+      width: rect.width,
+      height: rect.height,
+    });
+  };
+
+  public handlePointerDown = (event: PointerEvent): void => {
+    event.preventDefault();
+    switch (event.pointerType) {
+      case 'mouse':
+      case 'pen':
+        this.handleMouseDown(event);
+        break;
+      default:
+        // TODO: handle touch events.
+        break;
+    }
+  };
+
+  public handlePointerMove = (event: PointerEvent): void => {
+    event.preventDefault();
+    switch (event.pointerType) {
+      case 'mouse':
+      case 'pen':
+        this.handleMouseMove(event);
+        break;
+      default:
+        // TODO: handle touch events.
+        break;
+    }
+  };
+
+  public handlePointerUp = (event: PointerEvent): void => {
+    event.preventDefault();
+    switch (event.pointerType) {
+      case 'mouse':
+      case 'pen':
+        this.handleMouseUp(event);
+        break;
+      default:
+        // TODO: handle touch events.
+        break;
+    }
+  };
+
+  public handleMouseDown = (event: MouseEvent): void => {
+    event.preventDefault();
+    this.container.ownerDocument.addEventListener(
+      'pointermove',
+      this.handlePointerMove
+    );
+    this.container.ownerDocument.addEventListener(
+      'pointerup',
+      this.handlePointerUp
+    );
+    this.sendEventMessage(
+      copyProperties(event, MOUSE_EVENT_KEYS) as React.SyntheticEvent
+    );
+  };
+
+  public handleMouseMove = (event: MouseEvent): void => {
+    event.preventDefault();
+    this.sendEventMessage(
+      copyProperties(event, MOUSE_EVENT_KEYS) as React.SyntheticEvent
+    );
+  };
+
+  public handleMouseUp = (event: MouseEvent): void => {
+    event.preventDefault();
+    this.container.ownerDocument.removeEventListener(
+      'pointermove',
+      this.handlePointerMove
+    );
+    this.container.ownerDocument.removeEventListener(
+      'pointerup',
+      this.handlePointerUp
+    );
+    this.sendEventMessage(
+      copyProperties(event, MOUSE_EVENT_KEYS) as React.SyntheticEvent
+    );
+  };
+
+  public handleWheelEvent = (event: WheelEvent): void => {
+    event.preventDefault();
+    this.sendEventMessage(
+      copyProperties(event, WHEEL_EVENT_KEYS) as React.SyntheticEvent
+    );
+  };
+
+  public handleKeyboardEvent = (event: KeyboardEvent): void => {
+    event.preventDefault();
+    this.sendEventMessage(
+      copyProperties(event, KEYBOARD_EVENT_KEYS) as React.SyntheticEvent
+    );
+  };
+
+  public handleTouchEvent = (event: TouchEvent): void => {
+    event.preventDefault();
+    const e = copyProperties(
+      event,
+      TOUCH_EVENT_KEYS
+    ) as React.SyntheticEvent & { touches: string[] };
+    const touches = [];
+    for (const touch of event.touches)
+      touches.push(copyProperties(touch, TOUCH_KEYS));
+    e.touches = touches;
+    this.sendEventMessage(e as React.SyntheticEvent);
+  };
+}
 
 export class OffscreenElement extends THREE.EventDispatcher {
   private ownerDocument: OffscreenElement;
