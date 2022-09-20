@@ -18,34 +18,28 @@ export const MessageType = {
 
 export type MessageType = typeof MessageType[keyof typeof MessageType];
 
-export type OffscreenEvent = {
+export type Message = {
   type: MessageType;
-  id?: string;
-  top?: number;
-  left?: number;
-  width?: number;
-  height?: number;
-  preventDefault?: () => void;
-  stopPropagation?: () => void;
+  [key: string]: string | number | (() => void);
 };
 
-export type OffscreenDOMRect = {
+const isMessage = (value: unknown): value is Message =>
+  (value as Message).type !== undefined;
+
+export type Rect = {
   top: number;
   left: number;
   width: number;
   height: number;
-  right: number;
-  bottom: number;
+  right?: number;
+  bottom?: number;
 };
 
-const isOffscreenEvent = (
-  event: React.SyntheticEvent | OffscreenEvent
-): event is OffscreenEvent =>
-  (event as OffscreenEvent).type !== undefined &&
-  (event as OffscreenEvent).top !== undefined &&
-  (event as OffscreenEvent).left !== undefined &&
-  (event as OffscreenEvent).width !== undefined &&
-  (event as OffscreenEvent).height !== undefined;
+const isRect = (value: unknown): value is Rect =>
+  (value as Rect).top !== undefined &&
+  (value as Rect).left !== undefined &&
+  (value as Rect).width !== undefined &&
+  (value as Rect).height !== undefined;
 
 const copyProperties = (src: unknown, keys: string[]): unknown => {
   const ret = {};
@@ -299,8 +293,8 @@ export class OrbitControlsProxy extends Proxy {
   };
 }
 
-export class OffscreenElement extends THREE.EventDispatcher {
-  private ownerDocument: OffscreenElement;
+export class ElementDispatcher extends THREE.EventDispatcher {
+  private ownerDocument: ElementDispatcher;
 
   private top: number;
 
@@ -330,7 +324,7 @@ export class OffscreenElement extends THREE.EventDispatcher {
     return Math.round(this.height);
   }
 
-  public getBoundingClientRect = (): OffscreenDOMRect => {
+  public getBoundingClientRect = (): Rect => {
     return {
       top: this.top,
       left: this.left,
@@ -355,10 +349,8 @@ export class OffscreenElement extends THREE.EventDispatcher {
     // Noop
   };
 
-  public dispatchEvent = (
-    event: React.SyntheticEvent | OffscreenEvent
-  ): void => {
-    if (isOffscreenEvent(event) && event.type === 'resize') {
+  public dispatchEvent = (event: React.SyntheticEvent | Message): void => {
+    if (isMessage(event) && event.type === 'resize' && isRect(event)) {
       this.left = event.left;
       this.top = event.top;
       this.width = event.width;
@@ -370,26 +362,26 @@ export class OffscreenElement extends THREE.EventDispatcher {
   };
 }
 
-export class OffscreenWindow extends THREE.EventDispatcher {
+export class WindowDispatcher extends THREE.EventDispatcher {
   constructor() {
     super();
   }
 }
 
-export class Manager {
-  private targets: Map<string, OffscreenElement>;
+export class Context {
+  private targets: Map<string, ElementDispatcher>;
 
   constructor() {
-    this.targets = new Map<string, OffscreenElement>();
+    this.targets = new Map<string, ElementDispatcher>();
   }
 
-  public make = (id: string): OffscreenElement => {
-    const element = new OffscreenElement();
+  public make = (id: string): ElementDispatcher => {
+    const element = new ElementDispatcher();
     this.targets.set(id, element);
     return element;
   };
 
-  public get = (id: string): OffscreenElement => this.targets.get(id);
+  public get = (id: string): ElementDispatcher => this.targets.get(id);
 
   public has = (id: string): boolean => this.targets.has(id);
 

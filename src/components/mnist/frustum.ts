@@ -3,7 +3,7 @@
  * @copyright Shingo OKAWA 2022
  */
 import * as THREE from 'three';
-import * as THREEUtils from '@/utils/three';
+import * as Offscreen from '@/utils/offscreen';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import frag from '@/assets/shaders/dice.frag';
 import vert from '@/assets/shaders/dice.vert';
@@ -21,13 +21,13 @@ export class Animation {
 
   private canvas: HTMLCanvasElement | OffscreenCanvas;
 
-  private container: HTMLElement | THREEUtils.OffscreenElement;
+  private container: HTMLElement | Offscreen.ElementDispatcher;
 
   private request: number | null;
 
   constructor(
     canvas: HTMLCanvasElement | OffscreenCanvas,
-    container: HTMLElement | THREEUtils.OffscreenElement
+    container: HTMLElement | Offscreen.ElementDispatcher
   ) {
     this.canvas = canvas;
     this.container = container;
@@ -44,7 +44,7 @@ export class Animation {
       alpha: true,
     });
     this.renderer.setPixelRatio(self.window.devicePixelRatio);
-    if (this.container instanceof THREEUtils.OffscreenElement)
+    if (this.container instanceof Offscreen.ElementDispatcher)
       this.renderer.setSize(w, h, false);
     else this.renderer.setSize(w, h);
     this.renderer.outputEncoding = THREE.sRGBEncoding;
@@ -146,7 +146,7 @@ export class Animation {
   };
 
   private handleResize = (): void => {
-    if (this.container instanceof THREEUtils.OffscreenElement)
+    if (this.container instanceof Offscreen.ElementDispatcher)
       this.renderer.setSize(
         this.container.clientWidth,
         this.container.clientHeight,

@@ -5,7 +5,7 @@
 import * as React from 'react';
 import * as Container from '@/components/mnist/container';
 import * as Frustum from '@/components/mnist/frustum';
-import * as THREEUtils from '@/utils/three';
+import * as Offscreen from '@/utils/offscreen';
 
 export const Component: React.FunctionComponent<
   Record<string, never>
@@ -18,7 +18,7 @@ export const Component: React.FunctionComponent<
 
   const animation = React.useRef<Frustum.Animation>(null);
 
-  const proxy = React.useRef<THREEUtils.OrbitControlsProxy>(null);
+  const proxy = React.useRef<Offscreen.OrbitControlsProxy>(null);
 
   const startWorker = (): void => {
     if (!container.current || !canvas.current) return;
@@ -26,7 +26,7 @@ export const Component: React.FunctionComponent<
       new URL('@/components/mnist/worker', import.meta.url)
     );
     const offscreen = canvas.current.transferControlToOffscreen();
-    proxy.current = new THREEUtils.OrbitControlsProxy(
+    proxy.current = new Offscreen.OrbitControlsProxy(
       worker.current,
       container.current
     );
