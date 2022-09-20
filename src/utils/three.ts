@@ -9,7 +9,7 @@ import * as THREE from 'three';
 const NOOP = () => {};
 
 export const MessageType = {
-  CONSTRUCT: 'make',
+  MAKE: 'make',
   INIT: 'init',
   RESIZE: 'resize',
   EVENT: 'event',
@@ -20,11 +20,11 @@ export type MessageType = typeof MessageType[keyof typeof MessageType];
 
 export type OffscreenEvent = {
   type: MessageType;
-  top: number;
-  left: number;
-  width: number;
-  height: number;
-  id?: number;
+  id?: string;
+  top?: number;
+  left?: number;
+  width?: number;
+  height?: number;
   preventDefault?: () => void;
   stopPropagation?: () => void;
 };
@@ -75,9 +75,14 @@ const TOUCH_EVENT_KEYS = ['type'];
 const TOUCH_KEYS = ['pageX', 'pageY'];
 
 export abstract class Proxy {
-  public constructor(readonly worker: Worker, readonly container: HTMLElement) {
+  public constructor(
+    readonly id: string,
+    readonly worker: Worker,
+    readonly container: HTMLElement
+  ) {
     this.worker.postMessage({
-      type: MessageType.CONSTRUCT,
+      type: MessageType.MAKE,
+      id: this.id,
     });
   }
 
@@ -86,6 +91,7 @@ export abstract class Proxy {
   public dispose(): void {
     this.worker.postMessage({
       type: MessageType.DISPOSE,
+      id: this.id,
     });
   }
 
@@ -93,6 +99,7 @@ export abstract class Proxy {
     this.worker.postMessage(
       {
         type: MessageType.INIT,
+        id: this.id,
         canvas: offscreenCanvas,
       },
       [offscreenCanvas]
@@ -100,16 +107,24 @@ export abstract class Proxy {
     this.configEventListener();
   };
 
-  public sendEventMessage = (event: React.SyntheticEvent): void =>
+  public sendEventMessage = (event: React.SyntheticEvent): void => {
     this.worker.postMessage({
       type: MessageType.EVENT,
+      id: this.id,
       event,
     });
+  };
 }
 
 export class OrbitControlsProxy extends Proxy {
-  public constructor(readonly worker: Worker, readonly container: HTMLElement) {
-    super(worker, container);
+  public constructor(
+    readonly worker: Worker,
+    readonly container: HTMLElement,
+    readonly id: string = 'proxy'
+  ) {
+    super(id, worker, container);
+    this.configEventListener = this.configEventListener.bind(this);
+    this.dispose = this.dispose.bind(this);
   }
 
   public configEventListener(): void {
@@ -172,6 +187,7 @@ export class OrbitControlsProxy extends Proxy {
     const rect = this.container.getBoundingClientRect();
     this.worker.postMessage({
       type: MessageType.RESIZE,
+      id: this.id,
       top: rect.top,
       left: rect.left,
       width: rect.width,
@@ -294,6 +310,8 @@ export class OffscreenElement extends THREE.EventDispatcher {
 
   private height: number;
 
+  public style: { [key: string]: unknown };
+
   constructor() {
     super();
     this.ownerDocument = this;
@@ -301,11 +319,16 @@ export class OffscreenElement extends THREE.EventDispatcher {
     this.left = 0;
     this.width = 0;
     this.height = 0;
+    this.style = {};
   }
 
-  public getWidth = (): number => Math.round(this.width);
+  public get clientWidth(): number {
+    return Math.round(this.width);
+  }
 
-  public getHeight = (): number => Math.round(this.height);
+  public get clientHeight(): number {
+    return Math.round(this.height);
+  }
 
   public getBoundingClientRect = (): OffscreenDOMRect => {
     return {
@@ -319,6 +342,16 @@ export class OffscreenElement extends THREE.EventDispatcher {
   };
 
   public focus = (): void => {
+    // Noop
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  public setPointerCapture = (id: number): void => {
+    // Noop
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  public releasePointerCapture = (id: number): void => {
     // Noop
   };
 
@@ -341,4 +374,26 @@ export class OffscreenWindow extends THREE.EventDispatcher {
   constructor() {
     super();
   }
+}
+
+export class Manager {
+  private targets: Map<string, OffscreenElement>;
+
+  constructor() {
+    this.targets = new Map<string, OffscreenElement>();
+  }
+
+  public make = (id: string): OffscreenElement => {
+    const element = new OffscreenElement();
+    this.targets.set(id, element);
+    return element;
+  };
+
+  public get = (id: string): OffscreenElement => this.targets.get(id);
+
+  public has = (id: string): boolean => this.targets.has(id);
+
+  public delete = (id: string): boolean => this.targets.delete(id);
+
+  public clear = (): void => this.targets.clear();
 }

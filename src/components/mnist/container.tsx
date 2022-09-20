@@ -43,3 +43,9 @@ export const Spinner: React.FunctionComponent<SpinnerProps> = ({
     />
   </Chakra.Fade>
 );
+
+export const Canvas = Chakra.forwardRef<Record<string, unknown>, 'canvas'>(
+  (props: Record<string, unknown>, ref) => {
+    return <canvas ref={ref} />;
+  }
+);
