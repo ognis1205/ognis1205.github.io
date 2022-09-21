@@ -9,7 +9,7 @@ import * as THREE from 'three';
 const NOOP = () => {};
 
 export const MessageType = {
-  MAKE: 'make',
+  CREATE: 'create',
   INIT: 'init',
   RESIZE: 'resize',
   EVENT: 'event',
@@ -75,7 +75,7 @@ export abstract class Proxy {
     readonly container: HTMLElement
   ) {
     this.worker.postMessage({
-      type: MessageType.MAKE,
+      type: MessageType.CREATE,
       id: this.id,
     });
   }
@@ -110,7 +110,7 @@ export abstract class Proxy {
   };
 }
 
-export class OrbitControlsProxy extends Proxy {
+export class ElementProxy extends Proxy {
   public constructor(
     readonly worker: Worker,
     readonly container: HTMLElement,
@@ -375,7 +375,7 @@ export class Context {
     this.targets = new Map<string, ElementDispatcher>();
   }
 
-  public make = (id: string): ElementDispatcher => {
+  public create = (id: string): ElementDispatcher => {
     const element = new ElementDispatcher();
     this.targets.set(id, element);
     return element;

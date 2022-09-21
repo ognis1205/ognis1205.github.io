@@ -44,9 +44,7 @@ export class Animation {
       alpha: true,
     });
     this.renderer.setPixelRatio(self.window.devicePixelRatio);
-    if (this.container instanceof Offscreen.ElementDispatcher)
-      this.renderer.setSize(w, h, false);
-    else this.renderer.setSize(w, h);
+    this.renderer.setSize(w, h);
     this.renderer.outputEncoding = THREE.sRGBEncoding;
 
     const target = new THREE.Vector3(-0.5, 1.2, 0);
@@ -145,17 +143,9 @@ export class Animation {
     this.renderer.dispose();
   };
 
-  private handleResize = (): void => {
-    if (this.container instanceof Offscreen.ElementDispatcher)
-      this.renderer.setSize(
-        this.container.clientWidth,
-        this.container.clientHeight,
-        false
-      );
-    else
-      this.renderer.setSize(
-        this.container.clientWidth,
-        this.container.clientHeight
-      );
-  };
+  private handleResize = (): void =>
+    this.renderer.setSize(
+      this.container.clientWidth,
+      this.container.clientHeight
+    );
 }

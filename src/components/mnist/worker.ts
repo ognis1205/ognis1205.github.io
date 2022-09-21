@@ -18,16 +18,20 @@ let animation: Frustum.Animation;
 
 const context = new Offscreen.Context();
 
-const handleMake = (data: {
+const handleCreate = (data: {
   type: string;
   id: string;
-}): Offscreen.ElementDispatcher => context.make(data.id);
+}): Offscreen.ElementDispatcher => context.create(data.id);
 
 const handleInit = (data: {
   type: string;
   id: string;
-  canvas: OffscreenCanvas;
+  canvas: OffscreenCanvas & { [k: string]: unknown };
 }): void => {
+  data.canvas.style = {
+    width: 0,
+    height: 0,
+  };
   animation = new Frustum.Animation(data.canvas, context.get(data.id));
 };
 
@@ -53,7 +57,7 @@ const handleDispose = (_: unknown): void => {
 };
 
 const handlers = new Map<string, unknown>();
-handlers.set(Offscreen.MessageType.MAKE, handleMake);
+handlers.set(Offscreen.MessageType.CREATE, handleCreate);
 handlers.set(Offscreen.MessageType.INIT, handleInit);
 handlers.set(Offscreen.MessageType.RESIZE, handleResize);
 handlers.set(Offscreen.MessageType.EVENT, handleEvent);
