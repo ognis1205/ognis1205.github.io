@@ -10,8 +10,9 @@ Since I used [next/image](https://nextjs.org/docs/api-reference/next/image) for 
 image optimizations are delegated to this API. Hence only concise optimizations are applied to the original
 images.
 
-1. Run the following command and start minikune.
+1. Run the following command to create GIF files:
 
- ```bash
+```bash
+ $ ffmpeg -i foo.mov -filter_complex "[0:v] fps=4,scale=640:-1,split [a][b];[a] palettegen [p];[b][p] paletteuse=dither=none" foo.gif
  $ mogrify -layers 'optimize' -fuzz 7% foo.gif
 ```
