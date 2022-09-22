@@ -7,6 +7,7 @@ import * as Chakra from '@chakra-ui/react';
 import NextLink from 'next/link';
 import Image from 'next/image';
 import styled from '@emotion/styled';
+import * as Loaders from '@/utils/loaders';
 
 const LogoBox = styled.span`
   font-weight: bold;
@@ -39,6 +40,7 @@ export const Component: React.FunctionComponent<
             width={20}
             height={20}
             alt="logo"
+            loader={Loaders.DefaultLoader}
             unoptimized={true}
           />
           <Chakra.Text

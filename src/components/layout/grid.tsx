@@ -7,6 +7,7 @@ import * as Chakra from '@chakra-ui/react';
 import * as Emotion from '@emotion/react';
 import NextLink from 'next/link';
 import Image from 'next/image';
+import * as Loaders from '@/utils/loaders';
 
 export type LinkProps = {
   children: React.ReactNode;
@@ -35,6 +36,8 @@ export const Link: React.FunctionComponent<LinkProps> = ({
           height="100%"
           layout="responsive"
           objectFit="contain"
+          loader={Loaders.DefaultLoader}
+          unoptimized={true}
         />
         <Chakra.LinkOverlay href={href} target="_blank">
           <Chakra.Text mt={2}>{title}</Chakra.Text>

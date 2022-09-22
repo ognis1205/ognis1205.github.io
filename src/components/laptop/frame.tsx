@@ -7,6 +7,7 @@ import * as Chakra from '@chakra-ui/react';
 import Image from 'next/image';
 import styled from '@emotion/styled';
 import * as Animations from '@/components/laptop/animations';
+import * as Loaders from '@/utils/loaders';
 
 export type Props = {
   src: string;
@@ -211,6 +212,8 @@ export const Component: React.FunctionComponent<Props> = ({
                   loading="lazy"
                   layout="fill"
                   objectFit="contain"
+                  loader={Loaders.DefaultLoader}
+                  unoptimized={true}
                 />
               </Display>
             </ScreenFace>
