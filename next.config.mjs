@@ -21,7 +21,7 @@ const nextConfig = {
     return config;
   },
   images: {
-    unoptimized: true,
+    loader: "custom"
   },
 };
 
