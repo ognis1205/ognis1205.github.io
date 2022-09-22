@@ -12,7 +12,7 @@ const Timeline: React.FunctionComponent<
 > = (): React.ReactElement => (
   <Layout.Article title="Timeline">
     <Chakra.Container>
-      <Chakra.Heading as="h3" fontSize={20} mb={4}>
+      <Chakra.Heading as="h3" fontSize={20} mb={4} variant="section-title">
         Timeline
       </Chakra.Heading>
       <Misc.WorkInProgress />

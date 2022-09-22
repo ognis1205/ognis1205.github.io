@@ -16,8 +16,6 @@ export const Github: React.FunctionComponent<Props> = ({
   target,
   ...props
 }: Props): React.ReactElement => {
-  const theme = Chakra.useTheme();
-
   return (
     <Chakra.Box
       backdropFilter="blur(10px)"
@@ -26,7 +24,6 @@ export const Github: React.FunctionComponent<Props> = ({
       {...props}
     >
       <Chakra.Link
-        color={theme.colors.hotPink}
         display="inline-flex"
         alignItems="center"
         style={{ gap: 4 }}

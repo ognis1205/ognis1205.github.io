@@ -12,7 +12,7 @@ const Portfolio: React.FunctionComponent<
 > = (): React.ReactElement => (
   <Layout.Article title="Porftolio">
     <Chakra.Container>
-      <Chakra.Heading as="h3" fontSize={20} mb={4}>
+      <Chakra.Heading as="h3" fontSize={20} mb={4} variant="section-title">
         Personal Projects
       </Chakra.Heading>
 
@@ -23,8 +23,12 @@ const Portfolio: React.FunctionComponent<
           justifyContent="center"
           alignItems="center"
         >
-          <Chakra.Text as="b" mb={5} mt={5} fontSize={15}>
+          <Chakra.Text as="b" mb={5} mt={5} fontSize={16}>
             SLAM@HOME
+          </Chakra.Text>
+          <Chakra.Text as="i" mb={5} textAlign="center" fontSize={14}>
+            An implementation of a real-time SLAM system over a local Wi-Fi
+            network.
           </Chakra.Text>
           <Laptop.Frame src="/images/portfolio/slam.gif" title="SLAM@HOME" />
           <Laptop.GithubLink
@@ -39,8 +43,11 @@ const Portfolio: React.FunctionComponent<
           justifyContent="center"
           alignItems="center"
         >
-          <Chakra.Text as="b" mb={5} mt={5} fontSize={15}>
+          <Chakra.Text as="b" mb={5} mt={5} fontSize={16}>
             NesTs
+          </Chakra.Text>
+          <Chakra.Text as="i" mb={5} textAlign="center" fontSize={14}>
+            A TypeScript Nintendo Entertainment System emulator implementation.
           </Chakra.Text>
           <Laptop.Frame src="/images/portfolio/nests.gif" title="NesTs" />
           <Laptop.GithubLink
@@ -56,8 +63,11 @@ const Portfolio: React.FunctionComponent<
           justifyContent="center"
           alignItems="center"
         >
-          <Chakra.Text as="b" mb={5} mt={5} fontSize={15}>
+          <Chakra.Text as="b" mb={5} mt={5} fontSize={16}>
             SIREN GAN
+          </Chakra.Text>
+          <Chakra.Text as="i" mb={5} textAlign="center" fontSize={14}>
+            A PoC Project of the SIREN GAN implementation in GLSL.
           </Chakra.Text>
           <Laptop.Frame src="/images/portfolio/siren.gif" title="SIREN GAN" />
           <Laptop.GithubLink
@@ -72,8 +82,11 @@ const Portfolio: React.FunctionComponent<
           justifyContent="center"
           alignItems="center"
         >
-          <Chakra.Text as="b" mb={5} mt={5} fontSize={15}>
+          <Chakra.Text as="b" mb={5} mt={5} fontSize={16}>
             Spark TDA
+          </Chakra.Text>
+          <Chakra.Text as="i" mb={5} textAlign="center" fontSize={14}>
+            A scalable topological data analysis package for Apache Spark.
           </Chakra.Text>
           <Laptop.Frame src="/images/portfolio/tda.png" title="Spark TDA" />
           <Laptop.GithubLink
@@ -90,6 +103,10 @@ const Portfolio: React.FunctionComponent<
         >
           <Chakra.Text as="b" mb={5} mt={5} fontSize={15}>
             Mutad
+          </Chakra.Text>
+          <Chakra.Text as="i" mb={5} textAlign="center" fontSize={14}>
+            A real-time search engine implementation based on various technology
+            stack.
           </Chakra.Text>
           <Laptop.Frame src="/images/portfolio/mutad.gif" title="Mutad" />
           <Laptop.GithubLink

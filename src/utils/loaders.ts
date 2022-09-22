@@ -13,9 +13,6 @@ export type MicroCMLProps = {
   quality: string;
 };
 
-export const microCMSLoader = ({
-  src,
-  width
-}: MicroCMLProps): string => {
-  return `${src}?auto=format&fit=max&w=${width}`
+export const microCMSLoader = ({ src, width }: MicroCMLProps): string => {
+  return `${src}?auto=format&fit=max&w=${width}`;
 };
