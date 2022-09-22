@@ -7,7 +7,6 @@ import * as Chakra from '@chakra-ui/react';
 import * as Emotion from '@emotion/react';
 import NextLink from 'next/link';
 import Image from 'next/image';
-import * as Loaders from '@/utils/loaders';
 
 export type LinkProps = {
   children: React.ReactNode;
@@ -24,15 +23,18 @@ export const Link: React.FunctionComponent<LinkProps> = ({
   thumbnail,
 }: LinkProps): React.ReactElement => {
   return (
-    <Chakra.Box w="100%" textAlign="center">
+    <Chakra.Box w="80%" textAlign="center" verticalAlign="middle">
       <Chakra.LinkBox cursor="pointer">
         <Image
           src={thumbnail}
           alt={title}
+          title={title}
           className="grid-item-thumbnail"
           loading="lazy"
-          loader={Loaders.DefaultLoader}
-          unoptimized={true}
+          width="100%"
+          height="100%"
+          layout="responsive"
+          objectFit="contain"
         />
         <Chakra.LinkOverlay href={href} target="_blank">
           <Chakra.Text mt={2}>{title}</Chakra.Text>

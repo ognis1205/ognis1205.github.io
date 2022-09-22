@@ -5,11 +5,7 @@
 import * as React from 'react';
 import * as Chakra from '@chakra-ui/react';
 import * as Layout from '@/components/layout';
-import mutad from '@/assets/images/mutad.gif';
-import nests from '@/assets/images/nests.gif';
-import siren from '@/assets/images/siren.gif';
-import slam from '@/assets/images/slam.gif';
-import tda from '@/assets/images/tda.png';
+import * as Laptop from '@/components/laptop';
 
 const Portfolio: React.FunctionComponent<
   Record<string, never>
@@ -17,60 +13,90 @@ const Portfolio: React.FunctionComponent<
   <Layout.Article title="Porftolio">
     <Chakra.Container>
       <Chakra.Heading as="h3" fontSize={20} mb={4}>
-        Portfolio
+        Personal Projects
       </Chakra.Heading>
 
       <Chakra.SimpleGrid columns={[1, 1, 2]} gap={6}>
-        <Layout.Section delay={0}>
-          <Layout.GridLink
+        <Layout.Section
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Chakra.Text as="b" mb={5} mt={5} fontSize={15}>
+            SLAM@HOME
+          </Chakra.Text>
+          <Laptop.Frame src="/images/portfolio/slam.gif" title="SLAM@HOME" />
+          <Laptop.GithubLink
+            zIndex="20"
             href="https://github.com/ognis1205/slam-at-home"
-            title="SLAM@HOME"
-            thumbnail={slam}
-          >
-            A real-time SLAM system over a local Wi-Fi network, ML driven and
-            WebRTC connected iOS & WEB applications.
-          </Layout.GridLink>
+            target="_blank"
+          />
         </Layout.Section>
-        <Layout.Section delay={0}>
-          <Layout.GridLink
+        <Layout.Section
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Chakra.Text as="b" mb={5} mt={5} fontSize={15}>
+            NesTs
+          </Chakra.Text>
+          <Laptop.Frame src="/images/portfolio/nests.gif" title="NesTs" />
+          <Laptop.GithubLink
+            zIndex="20"
             href="https://github.com/ognis1205/nests"
-            title="NesTs"
-            thumbnail={nests}
-          >
-            A Nintendo Entertainment System (NES) emulator implemented in
-            TypeScript/React.
-          </Layout.GridLink>
+            target="_blank"
+          />
         </Layout.Section>
 
-        <Layout.Section delay={0.1}>
-          <Layout.GridLink
+        <Layout.Section
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Chakra.Text as="b" mb={5} mt={5} fontSize={15}>
+            SIREN GAN
+          </Chakra.Text>
+          <Laptop.Frame src="/images/portfolio/siren.gif" title="SIREN GAN" />
+          <Laptop.GithubLink
+            zIndex="20"
             href="https://github.com/ognis1205/siren-gan"
-            title="SIREN-GAN"
-            thumbnail={siren}
-          >
-            A SIREN GAN implementation in GLSL that hallucinates new
-            hand-written digits in real-time.
-          </Layout.GridLink>
+            target="_blank"
+          />
         </Layout.Section>
-        <Layout.Section delay={0.1}>
-          <Layout.GridLink
+        <Layout.Section
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Chakra.Text as="b" mb={5} mt={5} fontSize={15}>
+            Spark TDA
+          </Chakra.Text>
+          <Laptop.Frame src="/images/portfolio/tda.png" title="Spark TDA" />
+          <Laptop.GithubLink
+            zIndex="20"
             href="https://github.com/ognis1205/spark-tda"
-            thumbnail={tda}
-            title="SparkTDA"
-          >
-            An Apache Spark package providing large scale Topological Data
-            Analysis functionalities.
-          </Layout.GridLink>
+            target="_blank"
+          />
         </Layout.Section>
-        <Layout.Section delay={0.1}>
-          <Layout.GridLink
+        <Layout.Section
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Chakra.Text as="b" mb={5} mt={5} fontSize={15}>
+            Mutad
+          </Chakra.Text>
+          <Laptop.Frame src="/images/portfolio/mutad.gif" title="Mutad" />
+          <Laptop.GithubLink
+            zIndex="20"
             href="https://github.com/ognis1205/mutad"
-            title="Mutad"
-            thumbnail={mutad}
-          >
-            A Realtime Data Processing and Search Engine Implementation,
-            visualizing Tweet geographic data in real-time.
-          </Layout.GridLink>
+            target="_blank"
+          />
         </Layout.Section>
       </Chakra.SimpleGrid>
     </Chakra.Container>

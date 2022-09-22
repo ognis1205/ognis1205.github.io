@@ -39,6 +39,10 @@ const components = {
     baseStyle: (props) => ({
       color: ChakraThemeTools.mode('#3d7aed', '#ff63c3')(props),
       textUnderlineOffset: 3,
+      textDecoration: 'none',
+      _hover: {
+        textDecoration: 'none',
+      },
     }),
   },
 };
@@ -49,6 +53,7 @@ const fonts = {
 
 const colors = {
   grassTeal: '#88ccca',
+  hotPink: '#ff63c3',
 };
 
 const config = {

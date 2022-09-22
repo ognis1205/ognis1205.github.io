@@ -7,7 +7,6 @@ import * as Chakra from '@chakra-ui/react';
 import NextLink from 'next/link';
 import Image from 'next/image';
 import styled from '@emotion/styled';
-import * as Loaders from '@/utils/loaders';
 
 const LogoBox = styled.span`
   font-weight: bold;
@@ -29,7 +28,7 @@ const LogoBox = styled.span`
 export const Component: React.FunctionComponent<
   Record<string, never>
 > = (): React.ReactElement => {
-  const logo = `/images/paw${Chakra.useColorModeValue('', '-dark')}.png`;
+  const logo = `/images/icons/paw${Chakra.useColorModeValue('', '-dark')}.png`;
 
   return (
     <NextLink href="/" passHref scroll={false}>
@@ -40,7 +39,6 @@ export const Component: React.FunctionComponent<
             width={20}
             height={20}
             alt="logo"
-            loader={Loaders.DefaultLoader}
             unoptimized={true}
           />
           <Chakra.Text

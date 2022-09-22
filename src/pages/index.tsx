@@ -59,7 +59,7 @@ const Index: React.FunctionComponent<
             overflow="hidden"
           >
             <ProfileImage
-              src="/images/shingo.jpg"
+              src="/images/profile/shingo.jpg"
               alt="Profile image"
               borderRadius="full"
               width="100%"
