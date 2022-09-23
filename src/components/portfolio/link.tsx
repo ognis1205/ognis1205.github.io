@@ -11,7 +11,7 @@ export type Props = Chakra.BoxProps & {
   target: string;
 };
 
-export const Github: React.FunctionComponent<Props> = ({
+export const Component: React.FunctionComponent<Props> = ({
   href,
   target,
   ...props

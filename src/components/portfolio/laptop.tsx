@@ -6,7 +6,7 @@ import * as React from 'react';
 import * as Chakra from '@chakra-ui/react';
 import Image from 'next/image';
 import styled from '@emotion/styled';
-import * as Animations from '@/components/laptop/animations';
+import * as Animations from '@/components/portfolio/animations';
 import * as Loaders from '@/utils/loaders';
 
 export type Props = {
@@ -95,6 +95,7 @@ const Shade = styled.div`
   left: 0;
   top: 0;
   width: 100%;
+  z-index: 20;
   aspect-ratio: 130 / 74;
   background: linear-gradient(
     -135deg,

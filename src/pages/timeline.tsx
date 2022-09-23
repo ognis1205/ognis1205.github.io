@@ -7,7 +7,7 @@ import * as Chakra from '@chakra-ui/react';
 import * as Layout from '@/components/layout';
 import * as Misc from '@/components/misc';
 
-const Timeline: React.FunctionComponent<
+const Component: React.FunctionComponent<
   Record<string, never>
 > = (): React.ReactElement => (
   <Layout.Article title="Timeline">
@@ -20,4 +20,4 @@ const Timeline: React.FunctionComponent<
   </Layout.Article>
 );
 
-export default Timeline;
+export default Component;

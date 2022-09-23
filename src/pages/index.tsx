@@ -16,7 +16,7 @@ const ProfileImage = Chakra.chakra(Image, {
     ['width', 'height', 'src', 'alt', 'loader', 'unoptimized'].includes(prop),
 });
 
-const Index: React.FunctionComponent<
+const Component: React.FunctionComponent<
   Record<string, never>
 > = (): React.ReactElement => (
   <Layout.Article title="Home">
@@ -225,4 +225,4 @@ const Index: React.FunctionComponent<
   </Layout.Article>
 );
 
-export default Index;
+export default Component;

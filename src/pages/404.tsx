@@ -6,7 +6,7 @@ import * as React from 'react';
 import * as Chakra from '@chakra-ui/react';
 import NextLink from 'next/link';
 
-const NotFound: React.FunctionComponent<
+const Component: React.FunctionComponent<
   Record<string, never>
 > = (): React.ReactElement => (
   <Chakra.Container>
@@ -21,4 +21,4 @@ const NotFound: React.FunctionComponent<
   </Chakra.Container>
 );
 
-export default NotFound;
+export default Component;

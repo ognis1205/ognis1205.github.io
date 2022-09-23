@@ -12,7 +12,7 @@ import * as Misc from '@/components/misc';
 import 'focus-visible/dist/focus-visible';
 import '@/assets/styles/reset.css';
 
-const Home: React.FC<NextApp.AppProps> = ({
+const Component: React.FC<NextApp.AppProps> = ({
   Component,
   pageProps,
   router,
@@ -49,4 +49,4 @@ export function reportWebVitals(metric: NextApp.NextWebVitalsMetric) {
   console.log(metric);
 }
 
-export default Home;
+export default Component;

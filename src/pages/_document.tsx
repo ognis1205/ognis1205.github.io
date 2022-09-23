@@ -8,7 +8,7 @@ import * as Chakra from '@chakra-ui/react';
 import Document from 'next/document';
 import * as ChakraConfig from '@/config/chakra';
 
-export default class Home extends Document {
+export default class Component extends Document {
   static async getInitialProps(
     ctx: NextDocument.DocumentContext
   ): Promise<NextDocument.DocumentInitialProps> {
