@@ -17,7 +17,7 @@ const nextConfig = {
       use: {
         loader: 'raw-loader'
       },
-    })
+    });
     return config;
   },
   images: {

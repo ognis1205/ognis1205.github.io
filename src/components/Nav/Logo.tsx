@@ -1,5 +1,5 @@
 /**
- * @fileoverview Defines logo.
+ * @fileoverview Defines Logo.
  * @copyright Shingo OKAWA 2022
  */
 import * as React from 'react';

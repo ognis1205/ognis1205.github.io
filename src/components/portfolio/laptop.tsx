@@ -14,12 +14,6 @@ export type Props = {
   title: string;
 };
 
-const Container = styled.div`
-  width: 100%;
-  aspect-ratio: 150 / 96;
-  perspective: 500px;
-`;
-
 const Laptop = styled.div`
   width: 100%;
   aspect-ratio: 150 / 96;
@@ -191,6 +185,12 @@ const Key = styled.div`
   &:hover {
     animation: ${Animations.keys} infinite 7s ease;
   }
+`;
+
+const Container = styled.div`
+  width: 100%;
+  aspect-ratio: 150 / 96;
+  perspective: 500px;
 `;
 
 export const Component: React.FunctionComponent<Props> = ({

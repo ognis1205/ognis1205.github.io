@@ -6,7 +6,7 @@ import * as React from 'react';
 import * as NextApp from 'next/app';
 import * as Chakra from '@chakra-ui/react';
 import Head from 'next/head';
-import * as Navigation from '@/components/navigation';
+import * as Nav from '@/components/Nav';
 import * as Footer from '@/components/layout/footer';
 import * as MNIST from '@/components/mnist';
 
@@ -33,7 +33,7 @@ export const Component: React.FunctionComponent<Props> = ({
         <meta property="og:type" content="website" />
         <title>Shingo OKAWA - Homepage</title>
       </Head>
-      <Navigation.NavBar path={router.asPath} />
+      <Nav.Component path={router.asPath} />
       <Chakra.Container maxW="container.md" pt={14}>
         <MNIST.Dice />
         {children}
