@@ -1,11 +1,11 @@
 /**
- * @fileoverview Defines article.
+ * @fileoverview Defines Article.
  * @copyright Shingo OKAWA 2022
  */
 import * as React from 'react';
 import * as FramerMotion from 'framer-motion';
+import * as Emotion from '@emotion/react';
 import Head from 'next/head';
-import * as Grid from '@/components/layout/grid';
 
 const variants = {
   hidden: { opacity: 0, x: 0, y: 20 },
@@ -42,7 +42,13 @@ export const Component: React.FunctionComponent<Props> = ({
           </Head>
         )}
         {children}
-        <Grid.Global />
+        <Emotion.Global
+          styles={`
+            .grid-item-thumbnail {
+              border-radius: 12px;
+            }
+          `}
+        />
       </>
     </FramerMotion.motion.article>
   );

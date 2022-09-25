@@ -8,8 +8,62 @@ import * as ChakraIcon from '@chakra-ui/icons';
 import * as ReactIcon from 'react-icons/io5';
 import Image from 'next/image';
 import NextLink from 'next/link';
-import * as Layout from '@/components/layout';
+import * as Layouts from '@/components/Layouts';
+import * as Bio from '@/components/Bio';
 import * as Loaders from '@/utils/loaders';
+
+const works = [
+  {
+    title: 'Stay at Home, Tokyo - Chief Housework Officer',
+    year: 'August 2020 - Present',
+    children:
+      'Living with my partner and cat buddies. Conducting all of the housework and having a life-long passion for cooking.',
+  },
+  {
+    title: 'Megagon Labs, Recruit Co., Ltd, Tokyo - Research Engineer',
+    year: 'June 2018 - August 2020',
+    children:
+      'Worked alongside international teams. Researched data engineering to unify software engineering and ML systems.',
+  },
+  {
+    title: 'FOLIO Inc., Tokyo - VP of Engineering, ML Engineer',
+    year: 'December 2016 - April 2018',
+    children:
+      'Designed and built financial data microservices and portfolio optimization engine. Researched topological data analysis for market regime analysis.',
+  },
+  {
+    title: 'SOINN inc., Yokohama - Data Scientist',
+    year: 'February 2016 - December 2016',
+    children:
+      'Participated in “Future AI Research and Development Project” of NEDO. Designed and built image recognition engine for UAVs as part of the NEDO project.',
+  },
+  {
+    title: 'Supership Inc., Tokyo - Search Engineer',
+    year: 'November 2014 - January 2016',
+    children:
+      'Worked across teams to implement robust search engines. Developed search engine modules such as query parser and large scale LSH library.',
+  },
+  {
+    title: 'MARSFLAG Inc., Tokyo - Server Side Engineer, R&D Engineer',
+    year: 'May 2011 - October 2014',
+    children:
+      'Designed and built internal management system of search engines. Researched next generation search/recommendation system.',
+  },
+];
+
+const educations = [
+  {
+    title: 'Graduate School of Energy Science, Kyoto University - Withdrawal',
+    year: 'April 2005 - September 2008',
+    children: 'GPA: 3.80/4.00 in major, 3.80/4.00 overall',
+  },
+  {
+    title:
+      'Faculty of Engineering, Hokkaido University - B.E., Nuclear Engineering',
+    year: 'April 2000 - March 2005',
+    children: 'GPA: 3.83/4.00 in major, 3.59/4.00 overall',
+  },
+];
 
 const ProfileImage = Chakra.chakra(Image, {
   shouldForwardProp: (prop) =>
@@ -19,7 +73,7 @@ const ProfileImage = Chakra.chakra(Image, {
 const Component: React.FunctionComponent<
   Record<string, never>
 > = (): React.ReactElement => (
-  <Layout.Article title="Home">
+  <Layouts.Article title="Home">
     <Chakra.Container>
       <Chakra.Box
         borderRadius="lg"
@@ -71,11 +125,11 @@ const Component: React.FunctionComponent<
         </Chakra.Box>
       </Chakra.Box>
 
-      <Layout.Section delay={0.1}>
+      <Layouts.Section delay={0.1}>
         <Chakra.Heading as="h3" variant="section-title">
           Work
         </Chakra.Heading>
-        <Layout.Paragraph>
+        <Layouts.Paragraph>
           Shingo is a software developer based in Tokyo with a passion for
           building digital services/stuff he wants. He has a knack for all
           things prototyping products, from planning and designing all the way
@@ -90,7 +144,7 @@ const Component: React.FunctionComponent<
             <Chakra.Link>wgpu</Chakra.Link>
           </NextLink>
           .
-        </Layout.Paragraph>
+        </Layouts.Paragraph>
         <Chakra.Box textAlign="center" my={4}>
           <NextLink href="/portfolio" passHref scroll={false}>
             <Chakra.Button
@@ -101,84 +155,29 @@ const Component: React.FunctionComponent<
             </Chakra.Button>
           </NextLink>
         </Chakra.Box>
-      </Layout.Section>
+      </Layouts.Section>
 
-      <Layout.Section delay={0.2}>
+      <Layouts.Section delay={0.2}>
         <Chakra.Heading as="h3" variant="section-title">
           Bio
         </Chakra.Heading>
-        <Layout.Bio
-          title="Stay at Home, Tokyo - Chief Housework Officer"
-          year="August 2020 - Present"
-        >
-          Living with my partner and cat buddies. Conducting all of the
-          housework and having a life-long passion for cooking.
-        </Layout.Bio>
-        <Layout.Bio
-          title="Megagon Labs, Recruit Co., Ltd, Tokyo - Research Engineer"
-          year="June 2018 - August 2020"
-        >
-          Worked alongside international teams. Researched data engineering to
-          unify software engineering and ML systems.
-        </Layout.Bio>
-        <Layout.Bio
-          title="FOLIO Inc., Tokyo - VP of Engineering, ML Engineer"
-          year="December 2016 - April 2018"
-        >
-          Designed and built financial data microservices and portfolio
-          optimization engine. Researched topological data analysis for market
-          regime analysis.
-        </Layout.Bio>
-        <Layout.Bio
-          title="SOINN inc., Yokohama - Data Scientist"
-          year="February 2016 - December 2016"
-        >
-          Participated in “Future AI Research and Development Project” of NEDO.
-          Designed and built image recognition engine for UAVs as part of the
-          NEDO project.
-        </Layout.Bio>
-        <Layout.Bio
-          title="Supership Inc., Tokyo - Search Engineer"
-          year="November 2014 - January 2016"
-        >
-          Worked across teams to implement robust search engines. Developed
-          search engine modules such as query parser and large scale LSH
-          library.
-        </Layout.Bio>
-        <Layout.Bio
-          title="MARSFLAG Inc., Tokyo - Server Side Engineer, R&D Engineer"
-          year="May 2011 - October 2014"
-        >
-          Designed and built internal management system of search engines.
-          Researched next generation search/recommendation system.
-        </Layout.Bio>
+        <Bio.Component items={works} />
         <Chakra.Heading as="h3" variant="section-title">
           Education
         </Chakra.Heading>
-        <Layout.Bio
-          title="Graduate School of Energy Science, Kyoto University - Withdrawal"
-          year="April 2005 - September 2008"
-        >
-          GPA: 3.80/4.00 in major, 3.80/4.00 overall
-        </Layout.Bio>
-        <Layout.Bio
-          title="Faculty of Engineering, Hokkaido University - B.E., Nuclear Engineering"
-          year="April 2000 - March 2005"
-        >
-          GPA: 3.83/4.00 in major, 3.59/4.00 overall
-        </Layout.Bio>
-      </Layout.Section>
+        <Bio.Component items={educations} />
+      </Layouts.Section>
 
-      <Layout.Section delay={0.3}>
+      <Layouts.Section delay={0.3}>
         <Chakra.Heading as="h3" variant="section-title">
           I ♥
         </Chakra.Heading>
-        <Layout.Paragraph>
+        <Layouts.Paragraph>
           Cooking, Music, Programming, Machine Learning, Cats
-        </Layout.Paragraph>
-      </Layout.Section>
+        </Layouts.Paragraph>
+      </Layouts.Section>
 
-      <Layout.Section delay={0.3}>
+      <Layouts.Section delay={0.3}>
         <Chakra.Heading as="h3" variant="section-title">
           Activities ☻
         </Chakra.Heading>
@@ -220,9 +219,9 @@ const Component: React.FunctionComponent<
             </Chakra.Link>
           </Chakra.ListItem>
         </Chakra.List>
-      </Layout.Section>
+      </Layouts.Section>
     </Chakra.Container>
-  </Layout.Article>
+  </Layouts.Article>
 );
 
 export default Component;

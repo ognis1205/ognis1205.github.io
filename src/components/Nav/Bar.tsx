@@ -1,12 +1,12 @@
 /**
- * @fileoverview Defines navbar.
+ * @fileoverview Defines Bar.
  * @copyright Shingo OKAWA 2022
  */
 import * as React from 'react';
 import * as Chakra from '@chakra-ui/react';
 import * as ReactIcons from 'react-icons/io5';
 import * as Logo from './Logo';
-import * as Link from './Link';
+import * as LinkList from './LinkList';
 import * as MenuBox from './MenuBox';
 import * as Toggler from './Toggler';
 
@@ -30,6 +30,31 @@ const menu = [
     href: 'https://github.com/ognis1205/ognis1205.github.io',
     children: 'View Source',
     isExternal: true,
+  },
+];
+
+const links = [
+  {
+    href: '/portfolio',
+    children: 'Portfolio',
+  },
+  {
+    href: '/timeline',
+    children: 'Timeline',
+  },
+  {
+    href: 'https://github.com/ognis1205/ognis1205.github.io',
+    target: '_blank',
+    display: 'inline-flex',
+    alignItems: 'center',
+    style: { gap: 4 },
+    pl: 2,
+    children: (
+      <>
+        <ReactIcons.IoLogoGithub />
+        View Source
+      </>
+    ),
   },
 ];
 
@@ -57,33 +82,7 @@ export const Component: React.FunctionComponent<Props> = ({
             <Logo.Component />
           </Chakra.Heading>
         </Chakra.Flex>
-        <Chakra.Stack
-          direction={{ base: 'column', md: 'row' }}
-          display={{ base: 'none', md: 'flex' }}
-          width={{ base: 'full', md: 'auto' }}
-          alignItems="center"
-          flexGrow={1}
-          mt={{ base: 4, md: 0 }}
-        >
-          <Link.Component href="/portfolio" path={path}>
-            Portfolio
-          </Link.Component>
-          <Link.Component href="/timeline" path={path}>
-            Timeline
-          </Link.Component>
-          <Link.Component
-            target="_blank"
-            href="https://github.com/ognis1205/ognis1205.github.io"
-            path={path}
-            display="inline-flex"
-            alignItems="center"
-            style={{ gap: 4 }}
-            pl={2}
-          >
-            <ReactIcons.IoLogoGithub />
-            View Source
-          </Link.Component>
-        </Chakra.Stack>
+        <LinkList.Component path={path} items={links} />
         <Chakra.Flex flex={1}>
           <Chakra.Spacer />
           <Toggler.Component />

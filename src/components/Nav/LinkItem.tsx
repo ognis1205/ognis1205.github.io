@@ -1,5 +1,5 @@
 /**
- * @fileoverview Defines link.
+ * @fileoverview Defines LinkItem.
  * @copyright Shingo OKAWA 2022
  */
 import * as React from 'react';
@@ -7,7 +7,7 @@ import * as Chakra from '@chakra-ui/react';
 import NextLink from 'next/link';
 
 export type Props = Chakra.LinkProps & {
-  path: string;
+  path?: string;
 };
 
 export const Component: React.FunctionComponent<Props> = ({

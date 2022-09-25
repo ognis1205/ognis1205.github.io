@@ -7,7 +7,7 @@ import * as NextApp from 'next/app';
 import * as Chakra from '@chakra-ui/react';
 import Head from 'next/head';
 import * as Nav from '@/components/Nav';
-import * as Footer from '@/components/layout/footer';
+import * as Footer from '@/components/Layouts/footer';
 import * as MNIST from '@/components/mnist';
 
 export type Props = {

@@ -1,5 +1,5 @@
 /**
- * @fileoverview Defines theme toggle.
+ * @fileoverview Defines Toggler.
  * @copyright Shingo OKAWA 2022
  */
 import * as React from 'react';

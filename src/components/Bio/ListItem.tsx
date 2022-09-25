@@ -1,5 +1,5 @@
 /**
- * @fileoverview Defines bio.
+ * @fileoverview Defines ListItem.
  * @copyright Shingo OKAWA 2022
  */
 import * as React from 'react';
