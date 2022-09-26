@@ -26,7 +26,7 @@ const Component: React.FunctionComponent<
             src="/images/portfolio/slam.mp4"
             href="https://github.com/ognis1205/slam-at-home"
             title="SLAM@HOME"
-            description="An implementation of a real-time SLAM system over a local Wi-Fi network."
+            description="An implementation of a SLAM system over a local Wi-Fi network."
           />
         </Layouts.Section>
         <Layouts.Section
