@@ -4,8 +4,8 @@
  */
 import * as React from 'react';
 import * as Chakra from '@chakra-ui/react';
-import * as Laptop from '@/components/portfolio/laptop';
-import * as Link from '@/components/portfolio/link';
+import * as Laptop from './Laptop';
+import * as Link from './Link';
 
 export type Props = {
   src: string;

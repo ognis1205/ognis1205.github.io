@@ -1,5 +1,5 @@
 /**
- * @fileoverview Defines Bio.
+ * @fileoverview Defines WhatIDo.
  * @copyright Shingo OKAWA 2022
  */
 export type { Props } from './List';

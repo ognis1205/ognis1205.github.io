@@ -10,6 +10,8 @@ import Image from 'next/image';
 import NextLink from 'next/link';
 import * as Layouts from '@/components/Layouts';
 import * as Bio from '@/components/Bio';
+import * as WhatILove from '@/components/WhatILove';
+import * as WhatIDo from '@/components/WhatIDo';
 import * as Loaders from '@/utils/loaders';
 
 const works = [
@@ -62,6 +64,26 @@ const educations = [
       'Faculty of Engineering, Hokkaido University - B.E., Nuclear Engineering',
     year: 'April 2000 - March 2005',
     children: 'GPA: 3.83/4.00 in major, 3.59/4.00 overall',
+  },
+];
+
+const loves = ['Cooking', 'Music', 'Programming', 'Machine Learning', 'Cats'];
+
+const activities = [
+  {
+    href: 'https://github.com/ognis1205',
+    icon: <ReactIcon.IoLogoGithub />,
+    children: 'GitHub',
+  },
+  {
+    href: 'https://twitter.com/ognis1205',
+    icon: <ReactIcon.IoLogoTwitter />,
+    children: 'Twitter',
+  },
+  {
+    href: 'https://www.instagram.com/ognis1205',
+    icon: <ReactIcon.IoLogoInstagram />,
+    children: 'Instagram',
   },
 ];
 
@@ -158,67 +180,16 @@ const Component: React.FunctionComponent<
       </Layouts.Section>
 
       <Layouts.Section delay={0.2}>
-        <Chakra.Heading as="h3" variant="section-title">
-          Bio
-        </Chakra.Heading>
-        <Bio.Component items={works} />
-        <Chakra.Heading as="h3" variant="section-title">
-          Education
-        </Chakra.Heading>
-        <Bio.Component items={educations} />
+        <Bio.Component heading={'Bio'} items={works} />
+        <Bio.Component heading={'Education'} items={educations} />
       </Layouts.Section>
 
       <Layouts.Section delay={0.3}>
-        <Chakra.Heading as="h3" variant="section-title">
-          I ♥
-        </Chakra.Heading>
-        <Layouts.Paragraph>
-          Cooking, Music, Programming, Machine Learning, Cats
-        </Layouts.Paragraph>
+        <WhatILove.Component items={loves} />
       </Layouts.Section>
 
       <Layouts.Section delay={0.3}>
-        <Chakra.Heading as="h3" variant="section-title">
-          Activities ☻
-        </Chakra.Heading>
-        <Chakra.List>
-          <Chakra.ListItem>
-            <Chakra.Link href="https://github.com/ognis1205" target="_blank">
-              <Chakra.Button
-                variant="ghost"
-                colorScheme="teal"
-                leftIcon={<ReactIcon.IoLogoGithub />}
-              >
-                @ognis1205
-              </Chakra.Button>
-            </Chakra.Link>
-          </Chakra.ListItem>
-          <Chakra.ListItem>
-            <Chakra.Link href="https://twitter.com/ognis1205" target="_blank">
-              <Chakra.Button
-                variant="ghost"
-                colorScheme="teal"
-                leftIcon={<ReactIcon.IoLogoTwitter />}
-              >
-                @ognis1205
-              </Chakra.Button>
-            </Chakra.Link>
-          </Chakra.ListItem>
-          <Chakra.ListItem>
-            <Chakra.Link
-              href="https://www.instagram.com/ognis1205"
-              target="_blank"
-            >
-              <Chakra.Button
-                variant="ghost"
-                colorScheme="teal"
-                leftIcon={<ReactIcon.IoLogoInstagram />}
-              >
-                @ognis1205
-              </Chakra.Button>
-            </Chakra.Link>
-          </Chakra.ListItem>
-        </Chakra.List>
+        <WhatIDo.Component items={activities} />
       </Layouts.Section>
     </Chakra.Container>
   </Layouts.Article>

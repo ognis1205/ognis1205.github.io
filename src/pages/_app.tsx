@@ -8,7 +8,7 @@ import * as Chakra from '@chakra-ui/react';
 import * as FramerMotion from 'framer-motion';
 import * as ChakraConfig from '@/config/chakra';
 import * as Layouts from '@/components/Layouts';
-import * as Misc from '@/components/misc';
+import * as Misc from '@/components/Misc';
 import 'focus-visible/dist/focus-visible';
 import '@/assets/styles/reset.css';
 

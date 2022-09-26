@@ -5,7 +5,7 @@
 import * as React from 'react';
 import * as Chakra from '@chakra-ui/react';
 import * as Layouts from '@/components/Layouts';
-import * as Portfolio from '@/components/portfolio';
+import * as Portfolio from '@/components/Portfolio';
 
 const Component: React.FunctionComponent<
   Record<string, never>
