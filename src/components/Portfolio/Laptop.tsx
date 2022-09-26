@@ -23,7 +23,8 @@ const Laptop = styled.div`
   top: 0;
   transform-style: preserve-3d;
   transform: rotateX(-20deg) rotateY(0deg) rotateZ(0deg);
-  &:hover {
+  &:hover,
+  &:active {
     animation: ${Animations.rotate} infinite 3s ease;
   }
 `;
@@ -118,7 +119,8 @@ const BodyFace = styled.div`
     rgba(0, 0, 0, 0.24) 0%,
     rgba(0, 0, 0, 0) 100%
   );
-  &:hover {
+  &:hover,
+  &:active {
     animation: ${Animations.lidKeyboard} infinite 3s ease;
   }
 `;
@@ -159,7 +161,8 @@ const Key = styled.div`
   transform: translateZ(-2px);
   border-radius: 0.1em;
   box-shadow: 0 -2px 0 #222;
-  &:hover {
+  &:hover,
+  &:active {
     animation: ${Animations.keys} infinite 3s ease;
   }
 `;
