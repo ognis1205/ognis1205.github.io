@@ -10,9 +10,11 @@
     "test": "jest",
     "watch": "jest --watchAll",
     "lint": "eslint .",
-    "fix": "eslint --fix ."
+    "fix": "eslint --fix .",
+    "typecheck": "tsc"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.4",
     "emotion": "^11.0.0",
     "next": "12.1.6",
     "react": "18.1.0",
@@ -25,7 +27,6 @@
     "@chakra-ui/icons": "^1.1.7",
     "@chakra-ui/react": "^2.0.0-next.0",
     "@emotion/css": "^11.10.0",
-    "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
     "@next/bundle-analyzer": "^12.3.0",
     "@types/jest": "^27.5.0",

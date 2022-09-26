@@ -24,7 +24,7 @@ const Laptop = styled.div`
   transform-style: preserve-3d;
   transform: rotateX(-20deg) rotateY(0deg) rotateZ(0deg);
   &:hover {
-    animation: ${Animations.rotate} infinite 7s ease;
+    animation: ${Animations.rotate} infinite 3s ease;
   }
 `;
 
@@ -46,9 +46,6 @@ const Screen = styled.div`
   );
   background-size: 300%;
   box-shadow: inset 0 0.2em 0.5em rgba(255, 255, 255, 0.5);
-  &:hover {
-    animation: ${Animations.lidScreen} infinite 7s ease;
-  }
 `;
 
 const ScreenFace = styled.div`
@@ -87,26 +84,6 @@ const Display = styled.div`
   box-shadow: inset 0 0 0.1em rgba(0, 0, 0, 1);
 `;
 
-const Shade = styled.div`
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  z-index: 20;
-  aspect-ratio: 130 / 74;
-  background: linear-gradient(
-    -135deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.1) 47%,
-    rgba(255, 255, 255, 0) 48%
-  );
-  background-size: 200% 130%;
-  background-position: 0px 0px;
-  &:hover {
-    animation: ${Animations.screenShade} infinite 7s ease;
-  }
-`;
-
 const Body = styled.div`
   width: 100%;
   aspect-ratio: 150 / 96;
@@ -123,9 +100,6 @@ const Body = styled.div`
     rgba(0, 0, 0, 0.24) 0%,
     rgba(0, 0, 0, 0) 100%
   );
-  &:hover {
-    animation: ${Animations.lidBody} infinite 7s ease;
-  }
 `;
 
 const BodyFace = styled.div`
@@ -145,7 +119,7 @@ const BodyFace = styled.div`
     rgba(0, 0, 0, 0) 100%
   );
   &:hover {
-    animation: ${Animations.lidKeyboard} infinite 7s ease;
+    animation: ${Animations.lidKeyboard} infinite 3s ease;
   }
 `;
 
@@ -186,7 +160,7 @@ const Key = styled.div`
   border-radius: 0.1em;
   box-shadow: 0 -2px 0 #222;
   &:hover {
-    animation: ${Animations.keys} infinite 7s ease;
+    animation: ${Animations.keys} infinite 3s ease;
   }
 `;
 
@@ -250,10 +224,7 @@ export const Component: React.FunctionComponent<Props> = ({
         <Laptop>
           <Screen>
             <ScreenFace>
-              <Display>
-                <Shade />
-                {renderDisplay()}
-              </Display>
+              <Display>{renderDisplay()}</Display>
             </ScreenFace>
             <Logo>
               <Image

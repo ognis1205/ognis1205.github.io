@@ -16,7 +16,7 @@ const breakpoints = ChakraThemeTools.createBreakpoints({
 const styles = {
   global: (props) => ({
     body: {
-      bg: ChakraThemeTools.mode('#d6d8da', '#202023')(props),
+      bg: ChakraThemeTools.mode('#ECE1D3', '#202023')(props),
     },
   }),
 };
