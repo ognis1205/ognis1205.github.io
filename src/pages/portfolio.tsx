@@ -23,7 +23,7 @@ const Component: React.FunctionComponent<
           alignItems="center"
         >
           <Portfolio.Item
-            src="/images/portfolio/slam.gif"
+            src="/images/portfolio/slam.mp4"
             href="https://github.com/ognis1205/slam-at-home"
             title="SLAM@HOME"
             description="An implementation of a real-time SLAM system over a local Wi-Fi network."
@@ -36,7 +36,7 @@ const Component: React.FunctionComponent<
           alignItems="center"
         >
           <Portfolio.Item
-            src="/images/portfolio/nests.gif"
+            src="/images/portfolio/nests.mp4"
             href="https://github.com/ognis1205/nests"
             title="NesTs"
             description="A TypeScript Nintendo Entertainment System emulator implementation."
@@ -49,7 +49,7 @@ const Component: React.FunctionComponent<
           alignItems="center"
         >
           <Portfolio.Item
-            src="/images/portfolio/siren.gif"
+            src="/images/portfolio/siren.mp4"
             href="https://github.com/ognis1205/siren-gan"
             title="SIREN GAN"
             description="A PoC Project of the SIREN GAN implementation in GLSL."
@@ -75,7 +75,7 @@ const Component: React.FunctionComponent<
           alignItems="center"
         >
           <Portfolio.Item
-            src="/images/portfolio/mutad.gif"
+            src="/images/portfolio/mutad.mp4"
             href="https://github.com/ognis1205/mutad"
             title="Mutad"
             description="A real-time search engine implementation based on various technology stack."

@@ -33,6 +33,10 @@ const handleInit = (data: {
     height: 0,
   };
   animation = new Frustum.Animation(data.canvas, context.get(data.id));
+  worker.postMessage({
+    type: Offscreen.MessageType.DONE,
+    done: 'done',
+  });
 };
 
 const handleResize = (data: { type: string; id: string }): void => {

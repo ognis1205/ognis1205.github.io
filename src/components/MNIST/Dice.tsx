@@ -20,11 +20,16 @@ export const Component: React.FunctionComponent<
 
   const proxy = React.useRef<Offscreen.ElementProxy>(null);
 
+  const [isLoading, setLoading] = React.useState<boolean>(true);
+
   const startWorker = (): void => {
     if (!container.current || !canvas.current) return;
     worker.current = new Worker(
       new URL('@/components/MNIST/worker', import.meta.url)
     );
+    worker.current.addEventListener('message', (e: MessageEvent) => {
+      if (e.data?.type === Offscreen.MessageType.DONE) setLoading(false);
+    });
     const offscreen = canvas.current.transferControlToOffscreen();
     proxy.current = new Offscreen.ElementProxy(
       worker.current,
@@ -57,6 +62,7 @@ export const Component: React.FunctionComponent<
   return (
     <Container.Box ref={container}>
       <Container.Canvas ref={canvas} />
+      <Container.Spinner fadeIn={isLoading} />
     </Container.Box>
   );
 };

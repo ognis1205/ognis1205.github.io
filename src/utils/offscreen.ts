@@ -11,6 +11,7 @@ const NOOP = () => {};
 export const MessageType = {
   CREATE: 'create',
   INIT: 'init',
+  DONE: 'done',
   RESIZE: 'resize',
   EVENT: 'event',
   DISPOSE: 'dispose',

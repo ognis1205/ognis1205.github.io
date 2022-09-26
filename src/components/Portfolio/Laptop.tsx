@@ -76,6 +76,9 @@ const Logo = styled.div`
 `;
 
 const Display = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 87%;
   aspect-ratio: 130 / 74;
   background: #000;
@@ -193,10 +196,49 @@ const Container = styled.div`
   perspective: 500px;
 `;
 
+const isMPeg = (value: string): boolean => value.endsWith('.mp4');
+
 export const Component: React.FunctionComponent<Props> = ({
   src,
   title,
 }: Props): React.ReactElement => {
+  const video = React.useRef<HTMLVideoElement>(null);
+
+  React.useEffect(() => {
+    if (video.current) video.current.play();
+  }, []);
+
+  const renderDisplay = () => {
+    if (isMPeg(src))
+      return (
+        <video
+          ref={video}
+          loop
+          muted
+          style={{
+            objectFit: 'fill',
+            maxWidth: '100%',
+            maxHeight: '100%',
+          }}
+        >
+          <source src={src} type="video/mp4" />
+          {title}
+        </video>
+      );
+    return (
+      <Image
+        src={src}
+        alt={title}
+        title={title}
+        loading="lazy"
+        layout="fill"
+        objectFit="contain"
+        loader={Loaders.DefaultLoader}
+        unoptimized={true}
+      />
+    );
+  };
+
   return (
     <Chakra.Box width={['50%', '40%', '70%']}>
       <Container>
@@ -205,17 +247,7 @@ export const Component: React.FunctionComponent<Props> = ({
             <ScreenFace>
               <Display>
                 <Shade />
-                <Image
-                  src={src}
-                  alt={title}
-                  title={title}
-                  className="grid-item-thumbnail"
-                  loading="lazy"
-                  layout="fill"
-                  objectFit="contain"
-                  loader={Loaders.DefaultLoader}
-                  unoptimized={true}
-                />
+                {renderDisplay()}
               </Display>
             </ScreenFace>
             <Logo>
