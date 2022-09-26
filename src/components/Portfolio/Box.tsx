@@ -1,5 +1,5 @@
 /**
- * @fileoverview Defines item.
+ * @fileoverview Defines Box.
  * @copyright Shingo OKAWA 2022
  */
 import * as React from 'react';
