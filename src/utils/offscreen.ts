@@ -8,6 +8,11 @@ import * as THREE from 'three';
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const NOOP = () => {};
 
+export const isOffscreenCanvaSupported = (): boolean => {
+  if (typeof OffscreenCanvas !== 'undefined') return true;
+  return false;
+};
+
 export const MessageType = {
   CREATE: 'create',
   INIT: 'init',

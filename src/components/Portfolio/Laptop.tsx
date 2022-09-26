@@ -198,6 +198,9 @@ const Container = styled.div`
 
 const isMPeg = (value: string): boolean => value.endsWith('.mp4');
 
+const posterOf = (value: string): string =>
+  value.substr(0, value.lastIndexOf('.')) + '.png';
+
 export const Component: React.FunctionComponent<Props> = ({
   src,
   title,
@@ -215,6 +218,8 @@ export const Component: React.FunctionComponent<Props> = ({
           ref={video}
           loop
           muted
+          playsInline
+          poster={posterOf(src)}
           style={{
             objectFit: 'fill',
             maxWidth: '100%',

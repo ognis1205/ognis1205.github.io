@@ -44,6 +44,7 @@ export const Component: React.FunctionComponent<
       canvas.current,
       container.current
     );
+    setLoading(false);
   };
 
   React.useEffect(() => {
