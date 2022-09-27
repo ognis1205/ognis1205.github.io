@@ -111,8 +111,8 @@ const BodyFace = styled.div`
   width: 100%;
   aspect-ratio: 150 / 96;
   border-radius: 0.5em;
-  transform-style: preserve-3d;
   background: #dfdfdf;
+  transform-style: preserve-3d;
   transform: translateZ(-1px);
   background-image: linear-gradient(
     30deg,
