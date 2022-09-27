@@ -7,9 +7,9 @@ import * as Chakra from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
 export type Props = {
-  children: React.ReactNode;
   title: string;
   year: string;
+  description: React.ReactNode;
 };
 
 const StyledBox = styled(Chakra.Box)`
@@ -25,15 +25,15 @@ const StyledTitle = styled.div`
 const StyledYear = styled.div``;
 
 export const Component: React.FunctionComponent<Props> = ({
-  children,
   title,
   year,
+  description,
 }: Props): React.ReactElement => {
   return (
     <StyledBox>
       <StyledTitle>{title}</StyledTitle>
       <StyledYear>{year}</StyledYear>
-      {children}
+      {description}
     </StyledBox>
   );
 };

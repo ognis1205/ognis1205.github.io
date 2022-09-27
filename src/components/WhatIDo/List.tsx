@@ -19,11 +19,9 @@ export const Component: React.FunctionComponent<Props> = ({
         Activities ☻
       </Chakra.Heading>
       <Chakra.List>
-        {items.map(({ href, icon, children }, i) => {
+        {items.map(({ href, icon, title }, i) => {
           return (
-            <ListItem.Component key={i} href={href} icon={icon}>
-              {children}
-            </ListItem.Component>
+            <ListItem.Component key={i} href={href} icon={icon} title={title} />
           );
         })}
       </Chakra.List>

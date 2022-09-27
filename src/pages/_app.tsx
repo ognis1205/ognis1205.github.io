@@ -7,7 +7,7 @@ import * as NextApp from 'next/app';
 import * as Chakra from '@chakra-ui/react';
 import * as FramerMotion from 'framer-motion';
 import * as ChakraConfig from '@/config/chakra';
-import * as Layouts from '@/components/Layouts';
+import * as Main from '@/layouts/Main';
 import * as Misc from '@/components/Misc';
 import 'focus-visible/dist/focus-visible';
 import '@/assets/styles/reset.css';
@@ -28,7 +28,7 @@ const Component: React.FC<NextApp.AppProps> = ({
       colorModeManager={colorModeManager}
     >
       <Misc.Fonts />
-      <Layouts.Main router={router}>
+      <Main.Component router={router}>
         <FramerMotion.AnimatePresence
           exitBeforeEnter
           initial={true}
@@ -40,7 +40,7 @@ const Component: React.FC<NextApp.AppProps> = ({
         >
           <Component {...pageProps} key={router.route} />
         </FramerMotion.AnimatePresence>
-      </Layouts.Main>
+      </Main.Component>
     </Chakra.ChakraProvider>
   );
 };

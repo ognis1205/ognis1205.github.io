@@ -8,7 +8,9 @@ import * as ChakraIcon from '@chakra-ui/icons';
 import * as ReactIcon from 'react-icons/io5';
 import Image from 'next/image';
 import NextLink from 'next/link';
-import * as Layouts from '@/components/Layouts';
+import * as Article from '@/layouts/Article';
+import * as Section from '@/layouts/Section';
+import * as Paragraph from '@/layouts/Paragraph';
 import * as Bio from '@/components/Bio';
 import * as WhatILove from '@/components/WhatILove';
 import * as WhatIDo from '@/components/WhatIDo';
@@ -18,37 +20,37 @@ const works = [
   {
     title: 'Stay at Home, Tokyo - Chief Housework Officer',
     year: 'August 2020 - Present',
-    children:
+    description:
       'Living with my partner and cat buddies. Conducting all of the housework and having a life-long passion for cooking.',
   },
   {
     title: 'Megagon Labs, Recruit Co., Ltd, Tokyo - Research Engineer',
     year: 'June 2018 - August 2020',
-    children:
+    description:
       'Worked alongside international teams. Researched data engineering to unify software engineering and ML systems.',
   },
   {
     title: 'FOLIO Inc., Tokyo - VP of Engineering, ML Engineer',
     year: 'December 2016 - April 2018',
-    children:
+    description:
       'Designed and built financial data microservices and portfolio optimization engine. Researched topological data analysis for market regime analysis.',
   },
   {
     title: 'SOINN inc., Yokohama - Data Scientist',
     year: 'February 2016 - December 2016',
-    children:
+    description:
       'Participated in “Future AI Research and Development Project” of NEDO. Designed and built image recognition engine for UAVs as part of the NEDO project.',
   },
   {
     title: 'Supership Inc., Tokyo - Search Engineer',
     year: 'November 2014 - January 2016',
-    children:
+    description:
       'Worked across teams to implement robust search engines. Developed search engine modules such as query parser and large scale LSH library.',
   },
   {
     title: 'MARSFLAG Inc., Tokyo - Server Side Engineer, R&D Engineer',
     year: 'May 2011 - October 2014',
-    children:
+    description:
       'Designed and built internal management system of search engines. Researched next generation search/recommendation system.',
   },
 ];
@@ -57,13 +59,13 @@ const educations = [
   {
     title: 'Graduate School of Energy Science, Kyoto University - Withdrawal',
     year: 'April 2005 - September 2008',
-    children: 'GPA: 3.80/4.00 in major, 3.80/4.00 overall',
+    description: 'GPA: 3.80/4.00 in major, 3.80/4.00 overall',
   },
   {
     title:
       'Faculty of Engineering, Hokkaido University - B.E., Nuclear Engineering',
     year: 'April 2000 - March 2005',
-    children: 'GPA: 3.83/4.00 in major, 3.59/4.00 overall',
+    description: 'GPA: 3.83/4.00 in major, 3.59/4.00 overall',
   },
 ];
 
@@ -73,17 +75,17 @@ const activities = [
   {
     href: 'https://github.com/ognis1205',
     icon: <ReactIcon.IoLogoGithub />,
-    children: 'GitHub',
+    title: 'GitHub',
   },
   {
     href: 'https://twitter.com/ognis1205',
     icon: <ReactIcon.IoLogoTwitter />,
-    children: 'Twitter',
+    title: 'Twitter',
   },
   {
     href: 'https://www.instagram.com/ognis1205',
     icon: <ReactIcon.IoLogoInstagram />,
-    children: 'Instagram',
+    title: 'Instagram',
   },
 ];
 
@@ -95,7 +97,7 @@ const ProfileImage = Chakra.chakra(Image, {
 const Component: React.FunctionComponent<
   Record<string, never>
 > = (): React.ReactElement => (
-  <Layouts.Article title="Home">
+  <Article.Component title="Home">
     <Chakra.Container>
       <Chakra.Box
         borderRadius="lg"
@@ -147,11 +149,11 @@ const Component: React.FunctionComponent<
         </Chakra.Box>
       </Chakra.Box>
 
-      <Layouts.Section delay={0.1}>
+      <Section.Component delay={0.1}>
         <Chakra.Heading as="h3" variant="section-title">
           Work
         </Chakra.Heading>
-        <Layouts.Paragraph>
+        <Paragraph.Component>
           Shingo is a software developer based in Tokyo with a passion for
           building digital services/stuff he wants. He has a knack for all
           things prototyping products, from planning and designing all the way
@@ -166,7 +168,7 @@ const Component: React.FunctionComponent<
             <Chakra.Link>wgpu</Chakra.Link>
           </NextLink>
           .
-        </Layouts.Paragraph>
+        </Paragraph.Component>
         <Chakra.Box textAlign="center" my={4}>
           <NextLink href="/portfolio" passHref scroll={false}>
             <Chakra.Button
@@ -177,22 +179,22 @@ const Component: React.FunctionComponent<
             </Chakra.Button>
           </NextLink>
         </Chakra.Box>
-      </Layouts.Section>
+      </Section.Component>
 
-      <Layouts.Section delay={0.2}>
+      <Section.Component delay={0.2}>
         <Bio.Component heading={'Bio'} items={works} />
         <Bio.Component heading={'Education'} items={educations} />
-      </Layouts.Section>
+      </Section.Component>
 
-      <Layouts.Section delay={0.3}>
+      <Section.Component delay={0.3}>
         <WhatILove.Component items={loves} />
-      </Layouts.Section>
+      </Section.Component>
 
-      <Layouts.Section delay={0.3}>
+      <Section.Component delay={0.3}>
         <WhatIDo.Component items={activities} />
-      </Layouts.Section>
+      </Section.Component>
     </Chakra.Container>
-  </Layouts.Article>
+  </Article.Component>
 );
 
 export default Component;
