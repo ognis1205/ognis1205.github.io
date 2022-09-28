@@ -18,6 +18,9 @@ const nextConfig = {
         loader: 'raw-loader'
       },
     });
+    config.infrastructureLogging = {
+      level: "error",
+    }
     return config;
   },
   images: {

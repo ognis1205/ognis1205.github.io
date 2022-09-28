@@ -3,6 +3,7 @@
  * @copyright Shingo OKAWA 2022
  */
 import * as React from 'react';
+import * as Chakra from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import * as ListItem from './ListItem';
 import * as Timeline from '@/utils/timeline';
@@ -17,25 +18,8 @@ const Container = styled.div`
   padding: 1rem 0;
 `;
 
-const Group = styled.div``;
-
-const Year = styled.div`
-  position: sticky;
-  top: 6px;
-  z-index: 1;
-  margin-left: -10px;
-  padding: 0.3em 0;
-  width: 78px;
-  text-align: center;
-  font-weight: 700;
-  border-radius: 2.5em;
-`;
-
-const Line = styled.div`
-  margin: 1em 0;
-  margin-left: 2px;
-  padding: 1em 0;
-  border-left: solid 2px rgba(115, 125, 130, 0.4);
+const Group = styled.div`
+  position: relative;
 `;
 
 export const Component: React.FunctionComponent<Props> = ({
@@ -45,24 +29,36 @@ export const Component: React.FunctionComponent<Props> = ({
     Number(item.date.slice(0, 4))
   );
 
+  const bgColor = Chakra.useColorModeValue('whiteAlpha.500', 'blackAlpha.500');
+
   return (
     <Container>
       {groups.map((group) => {
         const [year, items] = group;
         return (
           <Group key={`group-${year}`}>
-            <Year>{year}</Year>
-            <Line>
-              {items.map((item, i) => (
-                <ListItem.Component
-                  key={i}
-                  date={item.date}
-                  title={item.title}
-                  action={item.action}
-                  url={item.url}
-                />
-              ))}
-            </Line>
+            <Chakra.Heading
+              as="h4"
+              fontSize={20}
+              textAlign="center"
+              m={6}
+              p={3}
+              borderRadius="lg"
+              bg={bgColor}
+            >
+              {year}
+            </Chakra.Heading>
+            {items.map((item, i) => (
+              <ListItem.Component
+                key={i}
+                date={item.date}
+                title={item.title}
+                content={item.content}
+                action={item.action}
+                url={item.url}
+                src={item.src}
+              />
+            ))}
           </Group>
         );
       })}
