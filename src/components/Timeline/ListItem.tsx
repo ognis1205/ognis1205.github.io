@@ -81,7 +81,7 @@ export const Component: React.FunctionComponent<Props> = ({
         _before={dotStyle}
       >
         <IconBox>{getIcon(url)}</IconBox>
-        Posted on {Timeline.getHostFrom(url)} / {Timeline.formatDate(date)}
+        {Timeline.getHostFrom(url)} / {Timeline.formatDate(date)}
       </Chakra.Box>
       <Chakra.Box pl={6} pr={6} pb={6}>
         <Chakra.LinkBox
