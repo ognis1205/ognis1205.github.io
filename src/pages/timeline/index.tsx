@@ -5,6 +5,7 @@
 import * as React from 'react';
 import * as Chakra from '@chakra-ui/react';
 import * as Article from '@/layouts/Article';
+import * as Section from '@/layouts/Section';
 import * as Timeline from '@/components/Timeline';
 import * as RSS from '@/utils/rss';
 
@@ -71,11 +72,13 @@ const Component: React.FunctionComponent<
   return (
     <Article.Component title="Timeline">
       <Chakra.Container>
-        <Spinner fadeIn={isLoading} />
         <Chakra.Heading as="h3" fontSize={20} mb={4} variant="section-title">
           Timeline
         </Chakra.Heading>
-        <Timeline.Component items={items} />
+        <Section.Component delay={0.1}>
+          <Spinner fadeIn={isLoading} />
+          <Timeline.Component items={items} />
+        </Section.Component>
       </Chakra.Container>
     </Article.Component>
   );
