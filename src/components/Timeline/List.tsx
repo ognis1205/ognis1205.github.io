@@ -29,8 +29,6 @@ export const Component: React.FunctionComponent<Props> = ({
     Number(item.date.slice(0, 4))
   );
 
-  const bgColor = Chakra.useColorModeValue('whiteAlpha.500', 'blackAlpha.500');
-
   return (
     <Container>
       {groups.map((group) => {
@@ -43,8 +41,6 @@ export const Component: React.FunctionComponent<Props> = ({
               textAlign="center"
               m={6}
               p={3}
-              borderRadius="lg"
-              bg={bgColor}
             >
               {year}
             </Chakra.Heading>
