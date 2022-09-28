@@ -43,7 +43,7 @@ export const getFileContents = async (uri: string): Promise<Buffer> => {
 
 export const fetchFeedFrom = async (url: string): Promise<Item[]> => {
   try {
-    const feed = await PARSER.parseURL(url);
+    const feed = await PARSER.parseURL(`https://cryptic-reef-54759.herokuapp.com/${url}`);
     if (!feed?.items?.length) return [];
     return feed.items
       .map(({ title, link, isoDate, content, contentSnippet }) => {
