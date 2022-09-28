@@ -10,7 +10,7 @@ const bundleAnalyzer = withBundleAnalyzer({
 
 const nextConfig = {
   compress: true,
-  swcMinify: true,
+  swcMinify: false,
   webpack: (config, {}) => {
     config.module.rules.push({
       test: /\.(glsl|vs|fs|vert|frag)$/,

@@ -24,15 +24,21 @@ const getImgSrc = (html: string): string => {
     return img?.rawAttrs
       ?.split(/(\s+)/)
       .filter((line) => line.startsWith('src='))
-      .map((line) => line.replace(/^src=/gm, '').replace(/['"]+/gm, ''))?.[0];
+      .map((line) => line.replace(/^src=/gm, '').replace('"', ''))?.[0];
   }
   return undefined;
 };
 
 export const getFileContents = async (uri: string): Promise<Buffer> => {
-  const res = await fetch(uri);
-  const blob = await res.blob();
-  return Buffer.from(await blob.arrayBuffer());
+  try {
+    const res = await fetch(`https://cryptic-reef-54759.herokuapp.com/${uri}`);
+    const blob = await res.blob();
+    const arrayBuffer = await blob.arrayBuffer();
+    return Buffer.from(arrayBuffer);
+  } catch (e) {
+    console.error(`Failed to fetch data from ${uri}: ${e}`);
+    return Buffer.alloc(0);
+  }
 };
 
 export const fetchFeedFrom = async (url: string): Promise<Item[]> => {
