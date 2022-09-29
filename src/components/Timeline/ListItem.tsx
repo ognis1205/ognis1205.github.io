@@ -94,7 +94,7 @@ export const Component: React.FunctionComponent<Props> = (
         pb={3}
       >
         <Dot />
-        <Chakra.Text fontSize={12}>
+        <Chakra.Text fontSize={12} opacity={0.4}>
           Published a post on {getLink(props.type)}{' '}
           {Timeline.formatDate(props.date)}
         </Chakra.Text>

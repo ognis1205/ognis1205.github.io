@@ -20,7 +20,7 @@ const IconBox = styled.span`
 export const Component: React.FunctionComponent<Props> = ({
   creator,
   link,
-  isoDate,
+  pubDate,
   contentSnippet,
 }: Props): React.ReactElement => {
   return (
@@ -32,7 +32,7 @@ export const Component: React.FunctionComponent<Props> = ({
         bg={Chakra.useColorModeValue('whiteAlpha.500', 'blackAlpha.500')}
         css={{ backdropFilter: 'blur(10px)' }}
       >
-        <Chakra.Heading size="sm" fontSize={10}>
+        <Chakra.Heading size="sm" fontSize={10} fontWeight="bold">
           <Chakra.Flex flex={1}>
             <Chakra.Box
               display="flex"
@@ -45,7 +45,9 @@ export const Component: React.FunctionComponent<Props> = ({
               {creator}
             </Chakra.Box>
             <Chakra.Spacer />
-            <Chakra.Box>{isoDate}</Chakra.Box>
+            <Chakra.Text fontSize={8} opacity={0.4}>
+              {pubDate}
+            </Chakra.Text>
           </Chakra.Flex>
         </Chakra.Heading>
         <Chakra.Text m={3} fontSize={14}>
