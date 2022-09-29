@@ -35,24 +35,22 @@ export const Component: React.FunctionComponent<Props> = ({
         const [year, items] = group;
         return (
           <Group key={`group-${year}`}>
-            <Chakra.Heading
-              as="h4"
-              fontSize={20}
-              textAlign="center"
-              m={6}
-              p={3}
-            >
+            <Chakra.Heading as="h4" fontSize={20} mb={3}>
               {year}
             </Chakra.Heading>
             {items.map((item, i) => (
               <ListItem.Component
                 key={i}
-                date={item.date}
-                title={item.title}
+                type={item.type}
                 content={item.content}
-                action={item.action}
-                url={item.url}
-                src={item.src}
+                contentSnippet={item.contentSnippet}
+                creator={item.creator}
+                isoDate={item.isoDate}
+                link={item.link}
+                pubDate={item.pubDate}
+                title={item.title}
+                date={item.date}
+                imgSrc={item.imgSrc}
               />
             ))}
           </Group>

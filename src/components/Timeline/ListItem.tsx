@@ -4,113 +4,102 @@
  */
 import * as React from 'react';
 import * as Chakra from '@chakra-ui/react';
-import * as ReactIcon from 'react-icons/io5';
-import Image from 'next/image';
+import NextLink from 'next/link';
 import styled from '@emotion/styled';
 import * as Timeline from '@/utils/timeline';
-import * as Loaders from '@/utils/loaders';
+import * as RSS from '@/utils/rss';
+import * as Instagram from './Instagram';
+import * as Twitter from './Twitter';
+import * as Unknown from './Unknown';
 
-export type Props = {
-  date: string;
-  title: string;
-  content: string;
-  action?: string;
-  url?: string;
-  src?: string;
-};
+export type Props = RSS.Feed;
 
-const AspectRatioBox = styled.div`
-  display: inline-block;
-  position: relative;
-  width: 25%;
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
-  overflow: hidden;
-`;
-
-const IconBox = styled.span`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-left: 0.75em;
-  padding-right: 0.5em;
-`;
-
-const getIcon = (url: string): React.ReactElement => {
-  const hostname = Timeline.getHostFrom(url);
-  if (hostname.includes('twitter')) {
-    return <ReactIcon.IoLogoTwitter color="teal" />;
-  } else if (hostname.includes('instagram')) {
-    return <ReactIcon.IoLogoInstagram color="teal" />;
+const getLink = (type: RSS.FeedType): React.ReactElement => {
+  if (type === RSS.FeedType.TWITTER) {
+    return (
+      <NextLink href="https://twitter.com" passHref>
+        <Chakra.Link color="" fontWeight="bold">
+          Twitter
+        </Chakra.Link>
+      </NextLink>
+    );
+  } else if (type === RSS.FeedType.INSTAGRAM) {
+    return (
+      <NextLink href="https://www.instagram.com/" passHref>
+        <Chakra.Link color="" fontWeight="bold">
+          Instagram
+        </Chakra.Link>
+      </NextLink>
+    );
   } else {
-    return <ReactIcon.IoPaw color="teal" />;
+    return (
+      <NextLink href="#" passHref>
+        <Chakra.Link color="" fontWeight="bold">
+          N/A
+        </Chakra.Link>
+      </NextLink>
+    );
   }
 };
 
-export const Component: React.FunctionComponent<Props> = ({
-  date,
-  title,
-  url,
-  src,
-}: Props): React.ReactElement => {
+const renderItem = (feed: RSS.Feed): React.ReactElement => {
+  if (feed.type === RSS.FeedType.TWITTER) {
+    return <Twitter.Component {...feed} />;
+  } else if (feed.type === RSS.FeedType.INSTAGRAM) {
+    return <Instagram.Component {...feed} />;
+  } else {
+    return <Unknown.Component {...feed} />;
+  }
+};
+
+export const Component: React.FunctionComponent<Props> = (
+  props: Props
+): React.ReactElement => {
+  const bgColor = Chakra.useColorModeValue(
+    'rgba(0, 0, 0, 1)',
+    'rgba(255, 255, 255, 1)'
+  );
+
+  const bdColor = Chakra.useColorModeValue('#ECE1D3', '#202023');
+
+  const Dot = styled.span`
+    position: absolute;
+    border: 3px solid ${bdColor};
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    left: -6px;
+    background: ${bgColor};
+  `;
+
   const lineStyle = {
+    display: 'block',
     content: `""`,
     position: 'absolute',
-    left: '-2px',
-    top: '0',
-    bottom: '0',
+    top: '7px',
+    bottom: '-7px',
     width: '2px',
+    height: '100%',
     background: Chakra.useColorModeValue('blackAlpha.500', 'whiteAlpha.500'),
   };
 
-  const dotStyle = {
-    content: `"─ "`,
-    position: 'absolute',
-    left: '-2px',
-    display: 'flex',
-    alignItems: 'center',
-  };
-
   return (
-    <Chakra.Box _before={lineStyle}>
+    <Chakra.Box style={{ position: 'relative' }} _before={lineStyle}>
       <Chakra.Box
         display="flex"
         as="time"
         fontSize={14}
-        p={3}
-        _before={dotStyle}
+        alignItems="center"
+        pl={3}
+        pb={3}
       >
-        <IconBox>{getIcon(url)}</IconBox>
-        {Timeline.getHostFrom(url)} / {Timeline.formatDate(date)}
+        <Dot />
+        <Chakra.Text fontSize={12}>
+          Published a post on {getLink(props.type)}{' '}
+          {Timeline.formatDate(props.date)}
+        </Chakra.Text>
       </Chakra.Box>
-      <Chakra.Box pl={6} pr={6} pb={6}>
-        <Chakra.LinkBox
-          borderRadius="lg"
-          p={3}
-          textAlign="center"
-          bg={Chakra.useColorModeValue('whiteAlpha.500', 'blackAlpha.500')}
-          css={{ backdropFilter: 'blur(10px)' }}
-        >
-          <Chakra.Heading size="sm" my="2" fontSize={16}>
-            <Chakra.LinkOverlay href={url}>{title}</Chakra.LinkOverlay>
-          </Chakra.Heading>
-          {src && (
-            <AspectRatioBox>
-              <Image
-                src={src}
-                alt={title}
-                title={title}
-                loading="lazy"
-                layout="fill"
-                objectFit="cover"
-                className="rounded-full"
-                loader={Loaders.DefaultLoader}
-                unoptimized={true}
-              />
-            </AspectRatioBox>
-          )}
-        </Chakra.LinkBox>
-      </Chakra.Box>
+      {renderItem(props)}
     </Chakra.Box>
   );
 };

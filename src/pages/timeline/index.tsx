@@ -33,7 +33,7 @@ const Component: React.FunctionComponent<
 > = (): React.ReactElement => {
   const [isLoading, setLoading] = React.useState<boolean>(true);
 
-  const [items, setItems] = React.useState<RSS.Item[]>([]);
+  const [items, setItems] = React.useState<RSS.Feed[]>([]);
 
   React.useEffect(() => {
     let unmounted = false;
@@ -41,13 +41,13 @@ const Component: React.FunctionComponent<
     const fetchAllFeed = async () => {
       const items = await RSS.fetchAllFeed();
       const encoded = await Promise.all(
-        items.map(async (item: RSS.Item) => {
-          if (item.src) {
-            const blob = await RSS.getFileContents(item.src);
+        items.map(async (item: RSS.Feed) => {
+          if (item.imgSrc) {
+            const blob = await RSS.getFileContents(item.imgSrc);
             const base64 = blob.toString('base64');
             return {
               ...item,
-              src: 'data:image/jpeg;charset=utf-8;base64,' + base64,
+              imgSrc: 'data:image/jpeg;charset=utf-8;base64,' + base64,
             };
           }
           return item;

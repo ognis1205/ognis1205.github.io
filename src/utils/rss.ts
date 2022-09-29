@@ -9,12 +9,37 @@ import * as RSS from '@/config/rss';
 
 const PARSER = new Parser();
 
-export type Item = {
-  title: string;
+const CORS_ANYWHERE = 'https://cors-anywhere-ognis1205.herokuapp.com';
+
+export const FeedType = {
+  TWITTER: 'twitter',
+  INSTAGRAM: 'instagram',
+  UNKNONW: 'unknown',
+} as const;
+
+export type FeedType = typeof FeedType[keyof typeof FeedType];
+
+export type Feed = {
+  type: FeedType;
   content: string;
-  url: string;
+  contentSnippet: string;
+  creator: string;
+  isoDate: string;
+  link: string;
+  pubDate: string;
+  title: string;
   date: string;
-  src?: string;
+  imgSrc?: string;
+};
+
+const getFeedType = (html: string): FeedType => {
+  if (html.includes('twitter')) {
+    return FeedType.TWITTER;
+  } else if (html.includes('instagram')) {
+    return FeedType.INSTAGRAM;
+  } else {
+    return FeedType.UNKNONW;
+  }
 };
 
 const getImgSrc = (html: string): string => {
@@ -31,7 +56,7 @@ const getImgSrc = (html: string): string => {
 
 export const getFileContents = async (uri: string): Promise<Buffer> => {
   try {
-    const res = await fetch(`https://cryptic-reef-54759.herokuapp.com/${uri}`);
+    const res = await fetch(`${CORS_ANYWHERE}/${uri}`);
     const blob = await res.blob();
     const arrayBuffer = await blob.arrayBuffer();
     return Buffer.from(arrayBuffer);
@@ -41,36 +66,44 @@ export const getFileContents = async (uri: string): Promise<Buffer> => {
   }
 };
 
-export const fetchFeedFrom = async (url: string): Promise<Item[]> => {
+export const fetchFeedFrom = async (url: string): Promise<Feed[]> => {
   try {
-    const feed = await PARSER.parseURL(
-      `https://cryptic-reef-54759.herokuapp.com/${url}`
-    );
+    const feed = await PARSER.parseURL(`${CORS_ANYWHERE}/${url}`);
     if (!feed?.items?.length) return [];
     return feed.items
-      .map(({ title, link, isoDate, content, contentSnippet }) => {
-        const src = getImgSrc(content);
-        if (src)
+      .map(
+        ({
+          content,
+          contentSnippet,
+          creator,
+          isoDate,
+          link,
+          pubDate,
+          title,
+        }) => {
           return {
+            type: getFeedType(link),
+            content: content,
+            contentSnippet: contentSnippet,
+            creator: creator,
+            isoDate: isoDate,
+            link: link,
+            pubDate: pubDate,
             title: title.replace(/\n/g, ' '),
-            content: contentSnippet,
-            url: link,
             date: dayjs(isoDate).format('YYYY-MM-DD'),
-            src: src,
-          } as Item;
-        return {
-          title: title.replace(/\n/g, ' '),
-          content: contentSnippet,
-          url: link,
-          date: dayjs(isoDate).format('YYYY-MM-DD'),
-        } as Item;
-      })
+            imgSrc: getImgSrc(content),
+          } as Feed;
+        }
+      )
       .filter(
-        (item): item is Item =>
-          typeof item.title === 'string' &&
+        (item): item is Feed =>
           typeof item.content === 'string' &&
-          typeof item.url === 'string' &&
-          typeof item.date === 'string'
+          typeof item.contentSnippet === 'string' &&
+          typeof item.creator === 'string' &&
+          typeof item.isoDate === 'string' &&
+          typeof item.link === 'string' &&
+          typeof item.pubDate === 'string' &&
+          typeof item.title === 'string'
       );
   } catch (e) {
     console.error(`Failed to fetch data from ${url}: ${e}`);
@@ -78,13 +111,13 @@ export const fetchFeedFrom = async (url: string): Promise<Item[]> => {
   }
 };
 
-export const fetchAllFeed = async (): Promise<Item[]> => {
-  const allItems: Item[] = [];
+export const fetchAllFeed = async (): Promise<Feed[]> => {
+  const ret: Feed[] = [];
   for (const url of RSS.config.urls) {
     const items = await fetchFeedFrom(url);
-    allItems.push(...items);
+    ret.push(...items);
   }
-  return allItems.sort(
-    (lhs: Item, rhs: Item) => +new Date(rhs.date) - +new Date(lhs.date)
+  return ret.sort(
+    (lhs: Feed, rhs: Feed) => +new Date(rhs.date) - +new Date(lhs.date)
   );
 };

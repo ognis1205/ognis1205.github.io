@@ -16,3 +16,9 @@ images.
  $ ffmpeg -i foo.mov -filter_complex "[0:v] fps=4,scale=640:-1,split [a][b];[a] palettegen [p];[b][p] paletteuse=dither=none" foo.gif
  $ mogrify -layers 'optimize' -fuzz 7% foo.gif
 ```
+
+CORS Proxy
+------------
+
+[https://cors-anywhere-ognis1205.herokuapp.com](https://cors-anywhere-ognis1205.herokuapp.com) is used as a CORS proxy
+server. Only [https://ognis1205.github.io](https://ognis1205.github.io) domain is allowed.
