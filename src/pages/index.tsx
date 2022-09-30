@@ -188,6 +188,16 @@ const Component: React.FunctionComponent<
 
       <Section.Component delay={0.3}>
         <WhatILove.Component items={loves} />
+        <Chakra.Box textAlign="center" my={4}>
+          <NextLink href="/timeline" passHref scroll={false}>
+            <Chakra.Button
+              rightIcon={<ChakraIcon.ChevronRightIcon />}
+              colorScheme="teal"
+            >
+              My timeline
+            </Chakra.Button>
+          </NextLink>
+        </Chakra.Box>
       </Section.Component>
 
       <Section.Component delay={0.3}>
