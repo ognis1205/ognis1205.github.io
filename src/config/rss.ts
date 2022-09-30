@@ -7,7 +7,6 @@ export const config = {
   title: "ognis1205's timeline",
   description: 'Personal website by ognis1205',
   urls: [
-    'https://rss.app/feeds/FtNPse9MeXs1eh2O.xml',
-    'https://rss.app/feeds/zBxjJqFlGRv2JjSG.xml',
+    'https://raw.githubusercontent.com/ognis1205/ognis1205-web-feed/main/instagram.json',
   ],
 };

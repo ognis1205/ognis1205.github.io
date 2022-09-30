@@ -3,11 +3,7 @@
  * @copyright Shingo OKAWA 2022
  */
 import dayjs from 'dayjs';
-import Parser from 'rss-parser';
-import * as HTMLParser from 'node-html-parser';
 import * as RSS from '@/config/rss';
-
-const PARSER = new Parser();
 
 const CORS_ANYWHERE = 'https://cors-anywhere-ognis1205.herokuapp.com';
 
@@ -42,18 +38,6 @@ const getFeedType = (html: string): FeedType => {
   }
 };
 
-const getImgSrc = (html: string): string => {
-  const document = HTMLParser.parse(html);
-  const img = document.querySelector('img');
-  if (img?.rawAttrs) {
-    return img?.rawAttrs
-      ?.split(/(\s+)/)
-      .filter((line) => line.startsWith('src='))
-      .map((line) => line.replace(/^src=/gm, '').replace('"', ''))?.[0];
-  }
-  return undefined;
-};
-
 export const getFileContents = async (uri: string): Promise<Buffer> => {
   try {
     const res = await fetch(`${CORS_ANYWHERE}/${uri}`);
@@ -68,9 +52,10 @@ export const getFileContents = async (uri: string): Promise<Buffer> => {
 
 export const fetchFeedFrom = async (url: string): Promise<Feed[]> => {
   try {
-    const feed = await PARSER.parseURL(`${CORS_ANYWHERE}/${url}`);
-    if (!feed?.items?.length) return [];
-    return feed.items
+    const res = await fetch(`${CORS_ANYWHERE}/${url}`);
+    const json = await res.json();
+    if (!json?.items?.length) return [];
+    return json.items
       .map(
         ({
           content,
@@ -80,6 +65,7 @@ export const fetchFeedFrom = async (url: string): Promise<Feed[]> => {
           link,
           pubDate,
           title,
+          imgSrc,
         }) => {
           return {
             type: getFeedType(link),
@@ -91,7 +77,7 @@ export const fetchFeedFrom = async (url: string): Promise<Feed[]> => {
             pubDate: pubDate,
             title: title.replace(/\n/g, ' '),
             date: dayjs(isoDate).format('YYYY-MM-DD'),
-            imgSrc: getImgSrc(content),
+            imgSrc: imgSrc,
           } as Feed;
         }
       )
@@ -117,6 +103,7 @@ export const fetchAllFeed = async (): Promise<Feed[]> => {
     const items = await fetchFeedFrom(url);
     ret.push(...items);
   }
+  console.log(ret);
   return ret.sort(
     (lhs: Feed, rhs: Feed) => +new Date(rhs.date) - +new Date(lhs.date)
   );
