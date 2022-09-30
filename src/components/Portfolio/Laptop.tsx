@@ -119,10 +119,6 @@ const BodyFace = styled.div`
     rgba(0, 0, 0, 0.24) 0%,
     rgba(0, 0, 0, 0) 100%
   );
-  &:hover,
-  &:active {
-    animation: ${Animations.lidKeyboard} infinite 3s ease;
-  }
 `;
 
 const Touchpad = styled.div`

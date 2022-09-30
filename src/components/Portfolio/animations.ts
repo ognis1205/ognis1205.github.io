@@ -19,18 +19,6 @@ export const rotate = keyframes`
   }
 `;
 
-export const lidKeyboard = keyframes`
-  0% {
-     background-color: #dfdfdf;
-  }
-  50% {
-    background-color: #bbb;
-  }
-  100% {
-    background-color: #dfdfdf;
-  }
-`;
-
 export const keys = keyframes`
   0% {
     box-shadow: 0 -2px 0 #222;

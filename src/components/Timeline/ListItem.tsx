@@ -12,7 +12,9 @@ import * as Instagram from './Instagram';
 import * as Twitter from './Twitter';
 import * as Unknown from './Unknown';
 
-export type Props = RSS.Feed;
+export type Props = RSS.Feed & {
+  isLast?: boolean;
+};
 
 const getLink = (type: RSS.FeedType): React.ReactElement => {
   if (type === RSS.FeedType.TWITTER) {
@@ -52,9 +54,10 @@ const renderItem = (feed: RSS.Feed): React.ReactElement => {
   }
 };
 
-export const Component: React.FunctionComponent<Props> = (
-  props: Props
-): React.ReactElement => {
+export const Component: React.FunctionComponent<Props> = ({
+  isLast = false,
+  ...props
+}: Props): React.ReactElement => {
   const bgColor = Chakra.useColorModeValue(
     'rgba(0, 0, 0, 1)',
     'rgba(255, 255, 255, 1)'
@@ -83,8 +86,20 @@ export const Component: React.FunctionComponent<Props> = (
     background: Chakra.useColorModeValue('blackAlpha.500', 'whiteAlpha.500'),
   };
 
+  const lastLineStyle = {
+    ...lineStyle,
+    background: undefined,
+    bgGradient: `linear(to-b, ${Chakra.useColorModeValue(
+      'blackAlpha.500',
+      'whiteAlpha.500'
+    )}, ${bdColor})`,
+  };
+
   return (
-    <Chakra.Box style={{ position: 'relative' }} _before={lineStyle}>
+    <Chakra.Box
+      style={{ position: 'relative' }}
+      _before={isLast ? lastLineStyle : lineStyle}
+    >
       <Chakra.Box
         display="flex"
         as="time"
