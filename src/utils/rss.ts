@@ -101,7 +101,6 @@ export const fetchAllFeed = async (): Promise<Feed[]> => {
     const items = await fetchFeedFrom(url);
     ret.push(...items);
   }
-  console.log(ret);
   return ret.sort(
     (lhs: Feed, rhs: Feed) => +new Date(rhs.date) - +new Date(lhs.date)
   );
