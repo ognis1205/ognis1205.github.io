@@ -7,6 +7,7 @@ import * as Chakra from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import * as ListItem from './ListItem';
 import * as Timeline from '@/utils/timeline';
+import * as DOM from '@/utils/dom';
 
 export type Props = {
   items: ListItem.Props[];
@@ -21,6 +22,14 @@ const Container = styled.div`
 export const Component: React.FunctionComponent<Props> = ({
   items,
 }: Props): React.ReactElement => {
+  const stickyOffset = ((): string | undefined => {
+    if (DOM.isDefined()) {
+      const offset = document.getElementById('navbar')?.offsetHeight;
+      return offset ? `${offset}px` : undefined;
+    }
+    return undefined;
+  })();
+
   const groups = Timeline.groupByKey(items, (item) =>
     Number(item.date.slice(0, 4))
   );
@@ -32,7 +41,7 @@ export const Component: React.FunctionComponent<Props> = ({
         return (
           <Chakra.Box key={`group-${year}`} display={{ md: 'flex' }}>
             <Chakra.Box mr={3}>
-              <Chakra.Heading as="h4" fontSize={20} mb={3}>
+              <Chakra.Heading as="h4" fontSize={20} mb={3} position="sticky" top={stickyOffset}>
                 {year}
               </Chakra.Heading>
             </Chakra.Box>

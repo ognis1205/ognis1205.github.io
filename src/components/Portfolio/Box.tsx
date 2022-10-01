@@ -29,7 +29,7 @@ export const Component: React.FunctionComponent<Props> = ({
         {description}
       </Chakra.Text>
       <Laptop.Component src={src} title={title} />
-      <Link.Component zIndex="999" href={href} target="_blank" />
+      <Link.Component zIndex={5} href={href} target="_blank" />
     </>
   );
 };

@@ -69,11 +69,12 @@ export const Component: React.FunctionComponent<Props> = ({
   return (
     <Chakra.Box
       position="fixed"
+      id="navbar"
       as="nav"
       w="100%"
       bg={Chakra.useColorModeValue('#ffffff40', '#20202380')}
       css={{ backdropFilter: 'blur(10px)' }}
-      zIndex={1}
+      zIndex={10}
       {...props}
     >
       <Chakra.Container display="flex" p={2} maxW="container.md">
