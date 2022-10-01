@@ -47,7 +47,7 @@ export class Animation {
     this.renderer.setSize(w, h);
     this.renderer.outputEncoding = THREE.sRGBEncoding;
 
-    const target = new THREE.Vector3(-0.5, 1.2, 0);
+    const target = new THREE.Vector3(0, 0, 0);
     const initialCameraPosition = new THREE.Vector3(
       20 * Math.sin(0.2 * Math.PI),
       10,

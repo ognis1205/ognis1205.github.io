@@ -5,8 +5,6 @@
 import dayjs from 'dayjs';
 import * as RSS from '@/config/rss';
 
-const CORS_ANYWHERE = 'https://cors-anywhere-ognis1205.herokuapp.com';
-
 export const FeedType = {
   TWITTER: 'twitter',
   INSTAGRAM: 'instagram',
@@ -40,7 +38,7 @@ const getFeedType = (html: string): FeedType => {
 
 export const getFileContents = async (uri: string): Promise<Buffer> => {
   try {
-    const res = await fetch(`${CORS_ANYWHERE}/${uri}`);
+    const res = await fetch(`${RSS.config.proxy}/${uri}`);
     const blob = await res.blob();
     const arrayBuffer = await blob.arrayBuffer();
     return Buffer.from(arrayBuffer);
@@ -52,7 +50,7 @@ export const getFileContents = async (uri: string): Promise<Buffer> => {
 
 export const fetchFeedFrom = async (url: string): Promise<Feed[]> => {
   try {
-    const res = await fetch(`${CORS_ANYWHERE}/${url}`);
+    const res = await fetch(`${RSS.config.proxy}/${url}`);
     const json = await res.json();
     if (!json?.items?.length) return [];
     return json.items
