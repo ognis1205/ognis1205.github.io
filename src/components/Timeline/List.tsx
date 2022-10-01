@@ -18,10 +18,6 @@ const Container = styled.div`
   padding: 1rem 0;
 `;
 
-const Group = styled.div`
-  position: relative;
-`;
-
 export const Component: React.FunctionComponent<Props> = ({
   items,
 }: Props): React.ReactElement => {
@@ -34,27 +30,31 @@ export const Component: React.FunctionComponent<Props> = ({
       {groups.map((group) => {
         const [year, items] = group;
         return (
-          <Group key={`group-${year}`}>
-            <Chakra.Heading as="h4" fontSize={20} mb={3}>
-              {year}
-            </Chakra.Heading>
-            {items.map((item, i) => (
-              <ListItem.Component
-                key={i}
-                isLast={i === items.length - 1}
-                type={item.type}
-                content={item.content}
-                contentSnippet={item.contentSnippet}
-                creator={item.creator}
-                isoDate={item.isoDate}
-                link={item.link}
-                pubDate={item.pubDate}
-                title={item.title}
-                date={item.date}
-                imgSrc={item.imgSrc}
-              />
-            ))}
-          </Group>
+          <Chakra.Box key={`group-${year}`} display={{ md: 'flex' }}>
+            <Chakra.Box mr={3}>
+              <Chakra.Heading as="h4" fontSize={20} mb={3}>
+                {year}
+              </Chakra.Heading>
+            </Chakra.Box>
+            <Chakra.Box>
+              {items.map((item, i) => (
+                <ListItem.Component
+                  key={i}
+                  isLast={i === items.length - 1}
+                  type={item.type}
+                  content={item.content}
+                  contentSnippet={item.contentSnippet}
+                  creator={item.creator}
+                  isoDate={item.isoDate}
+                  link={item.link}
+                  pubDate={item.pubDate}
+                  title={item.title}
+                  date={item.date}
+                  imgSrc={item.imgSrc}
+                />
+              ))}
+            </Chakra.Box>
+          </Chakra.Box>
         );
       })}
     </Container>
