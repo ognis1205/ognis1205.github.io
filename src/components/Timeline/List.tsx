@@ -30,9 +30,7 @@ export const Component: React.FunctionComponent<Props> = ({
     return undefined;
   })();
 
-  const groups = Timeline.groupByKey(items, (item) =>
-    Number(item.date.slice(0, 4))
-  );
+  const groups = Timeline.groupByKey(items, (item) => item.date.slice(0, 7));
 
   return (
     <Container>
@@ -40,18 +38,18 @@ export const Component: React.FunctionComponent<Props> = ({
         const [year, items] = group;
         return (
           <Chakra.Box key={`group-${year}`} display={{ md: 'flex' }}>
-            <Chakra.Box mr={3}>
+            <Chakra.Box flex={1} mr={2}>
               <Chakra.Heading
                 as="h4"
                 fontSize={20}
-                mb={3}
+                my={{ sm: 3, md: 0 }}
                 position="sticky"
                 top={stickyOffset}
               >
                 {year}
               </Chakra.Heading>
             </Chakra.Box>
-            <Chakra.Box>
+            <Chakra.Box flex={5}>
               {items.map((item, i) => (
                 <ListItem.Component
                   key={i}
