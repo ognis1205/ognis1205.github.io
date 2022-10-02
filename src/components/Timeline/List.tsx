@@ -42,7 +42,7 @@ export const Component: React.FunctionComponent<Props> = ({
               <Chakra.Heading
                 as="h4"
                 fontSize={20}
-                my={{ sm: 3, md: 0 }}
+                my={[3, 0]}
                 position="sticky"
                 top={stickyOffset}
               >
