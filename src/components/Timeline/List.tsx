@@ -41,7 +41,13 @@ export const Component: React.FunctionComponent<Props> = ({
         return (
           <Chakra.Box key={`group-${year}`} display={{ md: 'flex' }}>
             <Chakra.Box mr={3}>
-              <Chakra.Heading as="h4" fontSize={20} mb={3} position="sticky" top={stickyOffset}>
+              <Chakra.Heading
+                as="h4"
+                fontSize={20}
+                mb={3}
+                position="sticky"
+                top={stickyOffset}
+              >
                 {year}
               </Chakra.Heading>
             </Chakra.Box>

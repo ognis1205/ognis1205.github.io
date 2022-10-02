@@ -27,6 +27,11 @@ const menu = [
     isExternal: false,
   },
   {
+    href: '/contact',
+    children: 'Contact',
+    isExternal: false,
+  },
+  {
     href: 'https://github.com/ognis1205/ognis1205.github.io',
     children: 'View Source',
     isExternal: true,
@@ -41,6 +46,10 @@ const links = [
   {
     href: '/timeline',
     children: 'Timeline',
+  },
+  {
+    href: '/contact',
+    children: 'Contact',
   },
   {
     href: 'https://github.com/ognis1205/ognis1205.github.io',
