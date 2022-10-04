@@ -16,6 +16,7 @@
   "dependencies": {
     "@emailjs/browser": "^3.7.0",
     "@emotion/react": "^11.10.4",
+    "autosize": "^5.0.1",
     "dayjs": "^1.11.5",
     "emotion": "^11.0.0",
     "fs-extra": "^10.1.0",

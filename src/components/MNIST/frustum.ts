@@ -120,7 +120,7 @@ export class Animation {
       if (frame <= 100) {
         const pos = initialCameraPosition;
         const rot = -easeOutCirc(frame / 120) * Math.PI * 20;
-        this.camera.position.y = 10;
+        this.camera.position.y = pos.y;
         this.camera.position.x = pos.x * Math.cos(rot) + pos.z * Math.sin(rot);
         this.camera.position.z = pos.z * Math.cos(rot) - pos.x * Math.sin(rot);
         this.camera.lookAt(target);

@@ -18,37 +18,43 @@ import * as Loaders from '@/utils/loaders';
 
 const works = [
   {
-    title: 'Stay at Home, Tokyo - Chief Housework Officer',
+    organization: 'Stay at Home, Tokyo',
+    title: 'Chief Housework Officer',
     year: 'August 2020 - Present',
     description:
       'Living with my partner and cat buddies. Conducting all of the housework and having a life-long passion for cooking.',
   },
   {
-    title: 'Megagon Labs, Recruit Co., Ltd, Tokyo - Research Engineer',
+    organization: 'Megagon Labs, Recruit Co., Ltd, Tokyo',
+    title: 'Research Engineer',
     year: 'June 2018 - August 2020',
     description:
       'Worked alongside international teams. Researched data engineering to unify software engineering and ML systems.',
   },
   {
-    title: 'FOLIO Inc., Tokyo - VP of Engineering, ML Engineer',
+    organization: 'FOLIO Inc., Tokyo',
+    title: 'VP of Engineering, ML Engineer',
     year: 'December 2016 - April 2018',
     description:
       'Designed and built financial data microservices and portfolio optimization engine. Researched topological data analysis for market regime analysis.',
   },
   {
-    title: 'SOINN inc., Yokohama - Data Scientist',
+    organization: 'SOINN inc., Yokohama',
+    title: 'Data Scientist',
     year: 'February 2016 - December 2016',
     description:
       'Participated in “Future AI Research and Development Project” of NEDO. Designed and built image recognition engine for UAVs as part of the NEDO project.',
   },
   {
-    title: 'Supership Inc., Tokyo - Search Engineer',
+    organization: 'Supership Inc., Tokyo',
+    title: 'Search Engineer',
     year: 'November 2014 - January 2016',
     description:
       'Worked across teams to implement robust search engines. Developed search engine modules such as query parser and large scale LSH library.',
   },
   {
-    title: 'MARSFLAG Inc., Tokyo - Server Side Engineer, R&D Engineer',
+    organization: 'MARSFLAG Inc., Tokyo',
+    title: 'Server Side Engineer, R&D Engineer',
     year: 'May 2011 - October 2014',
     description:
       'Designed and built internal management system of search engines. Researched next generation search/recommendation system.',
@@ -57,13 +63,14 @@ const works = [
 
 const educations = [
   {
-    title: 'Graduate School of Energy Science, Kyoto University - Withdrawal',
+    organization: 'GRS of Energy Science, Kyoto University',
+    title: 'Withdrawal',
     year: 'April 2005 - September 2008',
     description: 'GPA: 3.80/4.00 in major, 3.80/4.00 overall',
   },
   {
-    title:
-      'Faculty of Engineering, Hokkaido University - B.E., Nuclear Engineering',
+    organization: 'FAC of Engineering, Hokkaido University',
+    title: 'B.E., Nuclear Engineering',
     year: 'April 2000 - March 2005',
     description: 'GPA: 3.83/4.00 in major, 3.59/4.00 overall',
   },

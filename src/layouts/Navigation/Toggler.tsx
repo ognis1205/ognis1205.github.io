@@ -12,14 +12,29 @@ export const Component: React.FunctionComponent<
 > = (): React.ReactElement => {
   const { toggleColorMode } = Chakra.useColorMode();
 
+  const initial = Chakra.useBreakpointValue({
+    base: { y: 0, opacity: 0 },
+    md: { y: -20, opacity: 0 },
+  });
+
+  const animate = Chakra.useBreakpointValue({
+    base: { y: 0, opacity: 1 },
+    md: { y: 0, opacity: 1 },
+  });
+
+  const exit = Chakra.useBreakpointValue({
+    base: { y: 0, opacity: 0 },
+    md: { y: 20, opacity: 0 },
+  });
+
   return (
     <FramerMotion.AnimatePresence exitBeforeEnter initial={false}>
       <FramerMotion.motion.div
         style={{ display: 'inline-block' }}
         key={Chakra.useColorModeValue('light', 'dark')}
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: 20, opacity: 0 }}
+        initial={initial}
+        animate={animate}
+        exit={exit}
         transition={{ duration: 0.2 }}
       >
         <Chakra.IconButton

@@ -52,8 +52,7 @@ export const Component: React.FunctionComponent<
         <Chakra.Box
           borderRadius="lg"
           w="100%"
-          px={12}
-          py={3}
+          p={[3, 6, 12]}
           textAlign="center"
           bg={Chakra.useColorModeValue('whiteAlpha.500', 'blackAlpha.500')}
           css={{ backdropFilter: 'blur(10px)' }}
@@ -104,10 +103,12 @@ export const Component: React.FunctionComponent<
             >
               <Chakra.FormLabel>Message</Chakra.FormLabel>
               <Chakra.Textarea
+                transition="height none"
+                resize="none"
                 color="black"
                 bg="white"
                 border="none"
-                placeholder="Hi, ognis1205!"
+                placeholder="Hi, Shingo!"
                 _placeholder={{ opacity: 1, color: 'gray.400' }}
                 {...register('message', { required: true })}
               />

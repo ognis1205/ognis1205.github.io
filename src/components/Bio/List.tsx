@@ -19,10 +19,11 @@ export const Component: React.FunctionComponent<Props> = ({
     <Chakra.Heading as="h3" variant="section-title">
       {heading}
     </Chakra.Heading>
-    {items.map(({ title, year, description }, i) => {
+    {items.map(({ organization, title, year, description }, i) => {
       return (
         <ListItem.Component
           key={i}
+          organization={organization}
           title={title}
           year={year}
           description={description}

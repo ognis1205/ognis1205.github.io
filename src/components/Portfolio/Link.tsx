@@ -27,6 +27,7 @@ export const Component: React.FunctionComponent<Props> = ({
         display="inline-flex"
         alignItems="center"
         style={{ gap: 4 }}
+        color="white"
         p={1}
         href={href}
         target={target}

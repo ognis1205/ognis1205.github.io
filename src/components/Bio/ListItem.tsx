@@ -4,36 +4,37 @@
  */
 import * as React from 'react';
 import * as Chakra from '@chakra-ui/react';
-import styled from '@emotion/styled';
 
 export type Props = {
+  organization: string;
   title: string;
   year: string;
   description: React.ReactNode;
 };
 
-const StyledBox = styled(Chakra.Box)`
-  padding-left: 3.4em;
-  text-indent: -3.4em;
-  margin-bottom: 1em;
-`;
-
-const StyledTitle = styled.div`
-  font-weight: bold;
-`;
-
-const StyledYear = styled.div``;
-
 export const Component: React.FunctionComponent<Props> = ({
+  organization,
   title,
   year,
   description,
 }: Props): React.ReactElement => {
   return (
-    <StyledBox>
-      <StyledTitle>{title}</StyledTitle>
-      <StyledYear>{year}</StyledYear>
-      {description}
-    </StyledBox>
+    <Chakra.Box>
+      <Chakra.Box display={{ md: 'flex' }}>
+        <Chakra.Box fontWeight="bold">{organization}</Chakra.Box>
+        <Chakra.Box
+          fontWeight="bold"
+          _before={{ md: { content: '"\\00A0─\\00A0"' } }}
+        >
+          {title}
+        </Chakra.Box>
+      </Chakra.Box>
+      <Chakra.Box>
+        <Chakra.Text as="i">{year}</Chakra.Text>
+      </Chakra.Box>
+      <Chakra.Box px={[3, 6]} py={[1, 3]}>
+        <Chakra.Text as="i">{description}</Chakra.Text>
+      </Chakra.Box>
+    </Chakra.Box>
   );
 };
