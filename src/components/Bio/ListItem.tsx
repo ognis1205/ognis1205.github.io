@@ -19,7 +19,7 @@ export const Component: React.FunctionComponent<Props> = ({
   description,
 }: Props): React.ReactElement => {
   return (
-    <Chakra.Box>
+    <Chakra.Box my={3}>
       <Chakra.Box display={{ md: 'flex' }}>
         <Chakra.Box fontWeight="bold">{organization}</Chakra.Box>
         <Chakra.Box
