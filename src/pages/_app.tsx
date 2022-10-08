@@ -45,8 +45,8 @@ const Component: React.FC<NextApp.AppProps> = ({
   );
 };
 
-export function reportWebVitals(metric: NextApp.NextWebVitalsMetric) {
-  console.log(metric);
-}
+//export function reportWebVitals(metric: NextApp.NextWebVitalsMetric) {
+//  console.log(metric);
+//}
 
 export default Component;
