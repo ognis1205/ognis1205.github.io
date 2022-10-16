@@ -36,7 +36,7 @@ export const Component: React.FunctionComponent<Props> = ({
   imgSrc,
 }: Props): React.ReactElement => {
   return (
-    <Chakra.Box pl={6} pr={6} pb={6}>
+    <Chakra.Box px={6} pb={6}>
       <Chakra.LinkBox
         borderRadius="lg"
         p={3}
@@ -69,7 +69,9 @@ export const Component: React.FunctionComponent<Props> = ({
           justifyContent="center"
           alignItems="center"
         >
-          <Chakra.LinkOverlay href={link}>{title}</Chakra.LinkOverlay>
+          <Chakra.LinkOverlay textAlign={'left'} href={link}>
+            {title}
+          </Chakra.LinkOverlay>
         </Chakra.Box>
         <AspectRatioBox>
           <Image

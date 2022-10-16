@@ -24,7 +24,7 @@ export const Component: React.FunctionComponent<Props> = ({
   contentSnippet,
 }: Props): React.ReactElement => {
   return (
-    <Chakra.Box pl={6} pr={6} pb={6}>
+    <Chakra.Box px={6} pb={6}>
       <Chakra.LinkBox
         borderRadius="lg"
         p={3}
