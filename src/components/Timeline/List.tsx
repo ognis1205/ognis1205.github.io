@@ -53,7 +53,6 @@ export const Component: React.FunctionComponent<Props> = ({
               {items.map((item, i) => (
                 <ListItem.Component
                   key={i}
-                  isLast={i === items.length - 1}
                   type={item.type}
                   content={item.content}
                   contentSnippet={item.contentSnippet}
