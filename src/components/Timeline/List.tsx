@@ -42,14 +42,13 @@ export const Component: React.FunctionComponent<Props> = ({
               <Chakra.Heading
                 as="h4"
                 fontSize={20}
-                my={[3, 0]}
                 position="sticky"
                 top={stickyOffset}
               >
                 {year}
               </Chakra.Heading>
             </Chakra.Box>
-            <Chakra.Box flex={5} mb={[3, 0]}>
+            <Chakra.Box flex={5} mb={[3, 3]}>
               {items.map((item, i) => (
                 <ListItem.Component
                   key={i}
