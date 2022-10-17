@@ -49,7 +49,7 @@ export const Component: React.FunctionComponent<Props> = ({
                 {year}
               </Chakra.Heading>
             </Chakra.Box>
-            <Chakra.Box flex={5}>
+            <Chakra.Box flex={5} mb={[3, 0]}>
               {items.map((item, i) => (
                 <ListItem.Component
                   key={i}
