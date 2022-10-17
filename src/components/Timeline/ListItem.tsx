@@ -63,11 +63,16 @@ export const Component: React.FunctionComponent<Props> = ({
     'rgba(255, 255, 255, 1)'
   );
 
-  const bdColor = Chakra.useColorModeValue('#ECE1D3', '#202023');
+  const noneColor = Chakra.useColorModeValue('#ECE1D3', '#202023');
+
+  const lineColor = Chakra.useColorModeValue(
+    'blackAlpha.500',
+    'whiteAlpha.500'
+  );
 
   const Dot = styled.span`
     position: absolute;
-    border: 3px solid ${bdColor};
+    border: 3px solid ${noneColor};
     width: 14px;
     height: 14px;
     border-radius: 50%;
@@ -83,16 +88,12 @@ export const Component: React.FunctionComponent<Props> = ({
     bottom: '-7px',
     width: '2px',
     height: '100%',
-    background: Chakra.useColorModeValue('blackAlpha.500', 'whiteAlpha.500'),
+    background: lineColor,
   };
 
   const lastLineStyle = {
     ...lineStyle,
     background: undefined,
-    bgGradient: `linear(to-b, ${Chakra.useColorModeValue(
-      'blackAlpha.500',
-      'whiteAlpha.500'
-    )}, ${bdColor})`,
   };
 
   return (
