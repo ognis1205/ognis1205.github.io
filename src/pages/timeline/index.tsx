@@ -77,7 +77,7 @@ const Component: React.FunctionComponent<
         </Chakra.Heading>
         <Section.Component delay={0.1}>
           <Spinner fadeIn={isLoading} />
-          <Timeline.Component items={items} />
+          <Timeline.Component items={items} numberToShow={30} />
         </Section.Component>
       </Chakra.Container>
     </Article.Component>

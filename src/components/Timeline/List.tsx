@@ -11,6 +11,7 @@ import * as DOM from '@/utils/dom';
 
 export type Props = {
   items: ListItem.Props[];
+  numberToShow: number;
 };
 
 const Container = styled.div`
@@ -21,6 +22,7 @@ const Container = styled.div`
 
 export const Component: React.FunctionComponent<Props> = ({
   items,
+  numberToShow,
 }: Props): React.ReactElement => {
   const stickyOffset = ((): string | undefined => {
     if (DOM.isDefined()) {
@@ -30,7 +32,9 @@ export const Component: React.FunctionComponent<Props> = ({
     return undefined;
   })();
 
-  const groups = Timeline.groupByKey(items, (item) => item.date.slice(0, 7));
+  const groups = Timeline.groupByKey(items.slice(0, numberToShow), (item) =>
+    item.date.slice(0, 7)
+  );
 
   return (
     <Container>
