@@ -36,9 +36,12 @@ const getFeedType = (html: string): FeedType => {
   }
 };
 
-export const getFileContents = async (uri: string): Promise<Buffer> => {
+export const getFileContents = async (
+  uri: string,
+  signal: AbortSignal
+): Promise<Buffer> => {
   try {
-    const res = await fetch(`${RSS.config.proxy}/${uri}`);
+    const res = await fetch(`${RSS.config.proxy}/${uri}`, { signal });
     const blob = await res.blob();
     const arrayBuffer = await blob.arrayBuffer();
     return Buffer.from(arrayBuffer);
@@ -48,9 +51,12 @@ export const getFileContents = async (uri: string): Promise<Buffer> => {
   }
 };
 
-export const fetchFeedFrom = async (url: string): Promise<Feed[]> => {
+export const fetchFeedFrom = async (
+  url: string,
+  signal: AbortSignal
+): Promise<Feed[]> => {
   try {
-    const res = await fetch(`${RSS.config.proxy}/${url}`);
+    const res = await fetch(`${RSS.config.proxy}/${url}`, { signal });
     const json = await res.json();
     if (!json?.items?.length) return [];
     return json.items
@@ -95,10 +101,10 @@ export const fetchFeedFrom = async (url: string): Promise<Feed[]> => {
   }
 };
 
-export const fetchAllFeed = async (): Promise<Feed[]> => {
+export const fetchAllFeed = async (signal: AbortSignal): Promise<Feed[]> => {
   const ret: Feed[] = [];
   for (const url of RSS.config.urls) {
-    const items = await fetchFeedFrom(url);
+    const items = await fetchFeedFrom(url, signal);
     ret.push(...items);
   }
   return ret.sort(

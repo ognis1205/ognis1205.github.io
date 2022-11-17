@@ -36,14 +36,16 @@ const Component: React.FunctionComponent<
   const [items, setItems] = React.useState<RSS.Feed[]>([]);
 
   React.useEffect(() => {
-    let unmounted = false;
+    const controller = new AbortController();
+
+    const { signal } = controller;
 
     const fetchAllFeed = async () => {
-      const items = await RSS.fetchAllFeed();
-      const encoded = await Promise.all(
+      const items = await RSS.fetchAllFeed(signal);
+      await Promise.all(
         items.map(async (item: RSS.Feed) => {
           if (item.imgSrc) {
-            const blob = await RSS.getFileContents(item.imgSrc);
+            const blob = await RSS.getFileContents(item.imgSrc, signal);
             const base64 = blob.toString('base64');
             return {
               ...item,
@@ -52,21 +54,17 @@ const Component: React.FunctionComponent<
           }
           return item;
         })
-      );
-
-      if (!unmounted) {
+      ).then((encoded) => {
         setItems(encoded);
         setLoading(false);
-      }
+      });
     };
 
     fetchAllFeed();
 
-    const cleanup = () => {
-      unmounted = true;
+    return () => {
+      controller.abort();
     };
-
-    return cleanup;
   }, []);
 
   return (
