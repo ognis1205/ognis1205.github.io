@@ -40,7 +40,7 @@ const Component: React.FunctionComponent<
 
     const { signal } = controller;
 
-    const fetchAllFeed = async () => {
+    (async () => {
       const items = await RSS.fetchAllFeed(signal);
       await Promise.all(
         items.map(async (item: RSS.Feed) => {
@@ -58,9 +58,7 @@ const Component: React.FunctionComponent<
         setItems(encoded);
         setLoading(false);
       });
-    };
-
-    fetchAllFeed();
+    })();
 
     return () => {
       controller.abort();
