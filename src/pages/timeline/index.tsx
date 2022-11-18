@@ -4,10 +4,25 @@
  */
 import * as React from 'react';
 import * as Chakra from '@chakra-ui/react';
+import { keyframes } from '@emotion/css';
+import styled from '@emotion/styled';
 import * as Article from '@/layouts/Article';
 import * as Section from '@/layouts/Section';
 import * as Timeline from '@/components/Timeline';
 import * as RSS from '@/utils/rss';
+
+const blinking = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+
+const Blink = styled.span`
+  animation: ${blinking} 1s ease-in-out infinite alternate;
+`;
 
 type SpinnerProps = {
   fadeIn: boolean;
@@ -17,14 +32,12 @@ const Spinner: React.FunctionComponent<SpinnerProps> = ({
   fadeIn,
 }: SpinnerProps): React.ReactElement => (
   <Chakra.Fade in={fadeIn}>
-    <Chakra.Spinner
-      size="xl"
-      position="absolute"
-      left="50%"
-      top="75%"
-      ml="calc(0px - var(--spinner-size) / 2)"
-      mt="calc(0px - var(--spinner-size))"
-    />
+    <Chakra.VStack>
+      <Chakra.Text as="b" mb={5} mt={5} fontSize={16} textAlign="center">
+        <Blink>It may take a few seconds...</Blink>
+      </Chakra.Text>
+      <Chakra.Spinner size="xl" />
+    </Chakra.VStack>
   </Chakra.Fade>
 );
 
