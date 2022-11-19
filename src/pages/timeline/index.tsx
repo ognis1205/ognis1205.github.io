@@ -34,7 +34,7 @@ const Spinner: React.FunctionComponent<SpinnerProps> = ({
   <Chakra.Fade in={fadeIn}>
     <Chakra.VStack>
       <Chakra.Text as="b" mb={5} mt={5} fontSize={16} textAlign="center">
-        <Blink>It may take a few seconds...</Blink>
+        <Blink>This may take a few seconds...</Blink>
       </Chakra.Text>
       <Chakra.Spinner size="xl" />
     </Chakra.VStack>
