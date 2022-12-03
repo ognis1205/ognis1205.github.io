@@ -41,9 +41,12 @@ export const getFileContents = async (
   signal: AbortSignal
 ): Promise<Buffer> => {
   try {
-    const res = await fetch(`${RSS.config.proxy}?url=${uri}`, {
-      signal: signal,
-    });
+    const res = await fetch(
+      `${RSS.config.proxy}?url=${encodeURIComponent(uri)}`,
+      {
+        signal: signal,
+      }
+    );
     const blob = await res.blob();
     const arrayBuffer = await blob.arrayBuffer();
     return Buffer.from(arrayBuffer);
@@ -58,9 +61,12 @@ export const fetchFeedFrom = async (
   signal: AbortSignal
 ): Promise<Feed[]> => {
   try {
-    const res = await fetch(`${RSS.config.proxy}?url=${url}`, {
-      signal: signal,
-    });
+    const res = await fetch(
+      `${RSS.config.proxy}?url=${encodeURIComponent(url)}`,
+      {
+        signal: signal,
+      }
+    );
     const json = await res.json();
     if (!json?.items?.length) return [];
     return json.items
