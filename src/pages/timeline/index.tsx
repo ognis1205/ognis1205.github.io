@@ -4,6 +4,7 @@
  */
 import * as React from 'react';
 import * as Chakra from '@chakra-ui/react';
+import * as ReactIcon from 'react-icons/fa';
 import { keyframes } from '@emotion/css';
 import styled from '@emotion/styled';
 import * as Article from '@/layouts/Article';
@@ -39,6 +40,17 @@ const Spinner: React.FunctionComponent<SpinnerProps> = ({
       <Chakra.Spinner size="xl" />
     </Chakra.VStack>
   </Chakra.Fade>
+);
+
+const SomethingWentWrong: React.FunctionComponent<
+  Record<string, never>
+> = (): React.ReactElement => (
+  <Chakra.VStack>
+    <ReactIcon.FaRegFrown size="2em" />
+    <Chakra.Text as="b" mb={5} mt={5} fontSize={16} textAlign="center">
+      Oops! Something went wrong.
+    </Chakra.Text>
+  </Chakra.VStack>
 );
 
 const Component: React.FunctionComponent<
@@ -87,8 +99,10 @@ const Component: React.FunctionComponent<
         <Section.Component delay={0.1}>
           {isLoading ? (
             <Spinner fadeIn={isLoading} />
-          ) : (
+          ) : items.length > 0 ? (
             <Timeline.Component items={items} numberToShow={30} />
+          ) : (
+            <SomethingWentWrong />
           )}
         </Section.Component>
       </Chakra.Container>

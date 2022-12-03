@@ -12,7 +12,7 @@ const Component: React.FunctionComponent<
   Record<string, never>
 > = (): React.ReactElement => {
   return (
-    <Article.Component title="Timeline">
+    <Article.Component title="Contact">
       <Chakra.Container>
         <Chakra.Heading as="h3" fontSize={20} mb={4} variant="section-title">
           Contact
