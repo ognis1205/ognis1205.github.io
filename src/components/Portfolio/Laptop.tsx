@@ -24,10 +24,13 @@ const Laptop = styled.div`
   transform-style: preserve-3d;
   transform: rotateX(-20deg) rotateY(0deg) rotateZ(0deg);
   &:hover,
+  &:focus,
   &:active {
     animation: ${Animations.rotate} infinite 3s ease;
   }
 `;
+
+Laptop.defaultProps = { 'aria-haspopup': 'true' };
 
 const Screen = styled.div`
   display: flex;
@@ -158,10 +161,13 @@ const Key = styled.div`
   border-radius: 0.1em;
   box-shadow: 0 -2px 0 #222;
   &:hover,
+  &:focus,
   &:active {
     animation: ${Animations.keys} infinite 3s ease;
   }
 `;
+
+Key.defaultProps = { 'aria-haspopup': 'true' };
 
 const Container = styled.div`
   width: 100%;
