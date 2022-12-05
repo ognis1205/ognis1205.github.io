@@ -23,6 +23,7 @@ const Laptop = styled.div`
   top: 0;
   transform-style: preserve-3d;
   transform: rotateX(-20deg) rotateY(0deg) rotateZ(0deg);
+  touch-action: none;
   &:hover,
   &:focus,
   &:active {
@@ -157,6 +158,7 @@ const Key = styled.div`
   background: #444;
   margin: 1px;
   transform: translateZ(-2px);
+  touch-action: none;
   border-radius: 0.1em;
   box-shadow: 0 -2px 0 #222;
   &:hover,
