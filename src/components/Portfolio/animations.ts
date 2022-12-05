@@ -5,6 +5,9 @@
 import { keyframes } from '@emotion/css';
 
 export const rotate = keyframes`
+  0% {
+    transform: rotateX(-20deg) rotateY(0deg) rotateZ(0deg);
+  }
   80% {
     transform: rotateX(-20deg) rotateY(375deg) rotateZ(0deg);
   }
