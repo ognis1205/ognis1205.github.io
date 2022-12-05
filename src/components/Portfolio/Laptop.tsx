@@ -42,7 +42,6 @@ const Screen = styled.div`
   background: #ddd;
   transform-style: preserve-3d;
   transform-origin: 50% 97%;
-  transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
   background-image: linear-gradient(
     45deg,
     rgba(0, 0, 0, 0.34) 0%,
