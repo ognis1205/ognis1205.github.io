@@ -20,5 +20,5 @@ images.
 CORS Proxy
 ------------
 
-[https://cors-anywhere-ognis1205.herokuapp.com](https://cors-anywhere-ognis1205.herokuapp.com) is used as a CORS proxy
+[https://ognis1205-cors-anywhere.vercel.app](https://ognis1205-cors-anywhere.vercel.app) is used as a CORS proxy
 server. Only [https://ognis1205.github.io](https://ognis1205.github.io) domain is allowed.
