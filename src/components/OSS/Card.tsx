@@ -49,10 +49,8 @@ export const Component: React.FunctionComponent<Props> = ({
                 p={1}
                 icon={
                   <Chakra.Image
-                    width="100%"
                     height="100%"
-                    borderRadius="full"
-                    objectFit="cover"
+                    objectFit="contain"
                     src={GitHub.getAvatorSrc(name)}
                     alt="Icon"
                   />
