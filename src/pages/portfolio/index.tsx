@@ -14,7 +14,7 @@ const Component: React.FunctionComponent<
 > = (): React.ReactElement => (
   <Article.Component title="Portfolio">
     <Chakra.Container>
-      <Chakra.Heading as="h3" fontSize={20} my={9} variant="section-title">
+      <Chakra.Heading as="h3" fontSize={20} mb={9} variant="section-title">
         Open Source Activities
       </Chakra.Heading>
       <Chakra.SimpleGrid columns={[1, 1, 2]} gap={3} mb={9}>
