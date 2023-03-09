@@ -7,12 +7,33 @@ import * as Chakra from '@chakra-ui/react';
 import * as Article from '@/layouts/Article';
 import * as Section from '@/layouts/Section';
 import * as Portfolio from '@/components/Portfolio';
+import * as OSS from '@/components/OSS';
 
 const Component: React.FunctionComponent<
   Record<string, never>
 > = (): React.ReactElement => (
   <Article.Component title="Portfolio">
     <Chakra.Container>
+      <Chakra.Heading as="h3" fontSize={20} my={9} variant="section-title">
+        Open Source Activities
+      </Chakra.Heading>
+      <Chakra.SimpleGrid columns={[1, 1, 2]} gap={3} mb={9}>
+        <OSS.Component
+          owner="mlflow"
+          name="mlflow"
+          href="https://github.com/mlflow"
+        />
+        <OSS.Component
+          owner="dask"
+          name="dask"
+          href="https://github.com/dask"
+        />
+        <OSS.Component
+          owner="kotosiro"
+          name="kotosiro"
+          href="https://github.com/kotosiro"
+        />
+      </Chakra.SimpleGrid>
       <Chakra.Heading as="h3" fontSize={20} mb={4} variant="section-title">
         Personal Projects
       </Chakra.Heading>
