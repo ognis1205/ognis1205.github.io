@@ -55,6 +55,8 @@ export const Component: React.FunctionComponent<Props> = ({
                     alt="Icon"
                   />
                 }
+                bg={'whiteAlpha.800'}
+                _hover={{ bgColor: 'white' }}
                 aria-label={`Read more about ${name}`}
               />
             </Chakra.Link>
