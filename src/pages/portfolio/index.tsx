@@ -19,18 +19,23 @@ const Component: React.FunctionComponent<
       </Chakra.Heading>
       <Chakra.SimpleGrid columns={[1, 1, 2]} gap={3} mb={9}>
         <OSS.Component
+          owner="delta-io"
+          pinned="delta"
+          href="https://github.com/delta-io"
+        />
+        <OSS.Component
           owner="mlflow"
-          name="mlflow"
+          pinned="mlflow"
           href="https://github.com/mlflow"
         />
         <OSS.Component
           owner="dask"
-          name="dask"
+          pinned="dask"
           href="https://github.com/dask"
         />
         <OSS.Component
           owner="kotosiro"
-          name="kotosiro"
+          pinned="sharing"
           href="https://github.com/kotosiro"
         />
       </Chakra.SimpleGrid>

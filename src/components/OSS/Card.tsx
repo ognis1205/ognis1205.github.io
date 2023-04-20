@@ -9,13 +9,13 @@ import * as GitHub from '@/utils/github';
 
 export type Props = {
   owner: string;
-  name: string;
+  pinned: string;
   href: string;
 };
 
 export const Component: React.FunctionComponent<Props> = ({
   owner,
-  name,
+  pinned,
   href,
 }: Props): React.ReactElement => {
   const [stats, setStats] = React.useState<GitHub.Stats>({
@@ -29,7 +29,7 @@ export const Component: React.FunctionComponent<Props> = ({
     const { signal } = controller;
 
     (async () => {
-      await GitHub.fetchStatsOf(owner, name, signal).then((stats) => {
+      await GitHub.fetchStatsOf(owner, pinned, signal).then((stats) => {
         setStats(stats);
       });
     })();
@@ -37,7 +37,7 @@ export const Component: React.FunctionComponent<Props> = ({
     return () => {
       controller.abort();
     };
-  }, [owner, name]);
+  }, [owner, pinned]);
 
   return (
     <Chakra.Box px={6}>
@@ -51,17 +51,17 @@ export const Component: React.FunctionComponent<Props> = ({
                   <Chakra.Image
                     height="100%"
                     objectFit="contain"
-                    src={GitHub.getAvatorSrc(name)}
+                    src={GitHub.getAvatorSrc(owner)}
                     alt="Icon"
                   />
                 }
                 bg={'whiteAlpha.800'}
                 _hover={{ bgColor: 'white' }}
-                aria-label={`Read more about ${name}`}
+                aria-label={`Read more about ${pinned}`}
               />
             </Chakra.Link>
             <Chakra.Text pl={3} fontSize={16} fontWeight="bold">
-              {name}
+              {owner}
             </Chakra.Text>
             <Chakra.Spacer />
             <Chakra.Box
