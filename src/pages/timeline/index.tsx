@@ -92,7 +92,7 @@ const Component: React.FunctionComponent<
 
   return (
     <Article.Component title="Timeline">
-      <Chakra.Container>
+      <Chakra.Container maxW="80%">
         <Chakra.Heading as="h3" fontSize={20} mb={4} variant="section-title">
           Timeline
         </Chakra.Heading>
