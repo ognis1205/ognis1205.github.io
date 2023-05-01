@@ -105,7 +105,7 @@ const Component: React.FunctionComponent<
   Record<string, never>
 > = (): React.ReactElement => (
   <Article.Component title="Home">
-    <Chakra.Container maxW="80%">
+    <Chakra.Container maxW={['100%', '80%', '80%']}>
       <Chakra.Box
         borderRadius="lg"
         mb={6}

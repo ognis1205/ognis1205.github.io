@@ -13,7 +13,7 @@ const Component: React.FunctionComponent<
 > = (): React.ReactElement => {
   return (
     <Article.Component title="Contact">
-      <Chakra.Container maxW="80%">
+      <Chakra.Container maxW={['100%', '80%', '80%']}>
         <Chakra.Heading as="h3" fontSize={20} mb={4} variant="section-title">
           Contact
         </Chakra.Heading>
