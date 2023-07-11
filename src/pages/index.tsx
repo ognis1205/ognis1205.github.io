@@ -18,6 +18,13 @@ import * as Loaders from '@/utils/loaders';
 
 const works = [
   {
+    organization: 'Delta Lake, International',
+    title: 'Committer',
+    year: 'July 2023 - Present',
+    description:
+      'Contributing to the delta-rs and working on several incubated projects, such as, delta-sharing-rs.',
+  },
+  {
     organization: 'Stay at Home, Tokyo',
     title: 'Chief Housework Officer',
     year: 'August 2020 - Present',
@@ -116,9 +123,9 @@ const Component: React.FunctionComponent<
       >
         Hello, I&apos;m a developer based in Tokyo!
         <br />
-        The above &ldquo;MNIST Dice&rdquo; is a small neural network running
-        entirely in a WebGL GLSL shader that hallucinates new hand-written
-        digits in real-time.
+        The above &ldquo;MNIST Dice&rdquo; is a neural network running entirely
+        in a WebGL GLSL shader that hallucinates new hand-written digits in
+        real-time.
       </Chakra.Box>
       <Chakra.Box display={{ md: 'flex' }}>
         <Chakra.Box flexGrow={1}>
@@ -169,7 +176,12 @@ const Component: React.FunctionComponent<
           such as{' '}
           <NextLink href="https://github.com/mlflow" passHref scroll={false}>
             <Chakra.Link>MLflow</Chakra.Link>
-          </NextLink>{' '}
+          </NextLink>
+          {', '}
+          <NextLink href="https://github.com/delta-io" passHref scroll={false}>
+            <Chakra.Link>Delta Lake</Chakra.Link>
+          </NextLink>
+          {', '}
           and{' '}
           <NextLink href="https://github.com/gfx-rs" passHref scroll={false}>
             <Chakra.Link>wgpu</Chakra.Link>

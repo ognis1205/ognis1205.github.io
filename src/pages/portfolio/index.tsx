@@ -34,6 +34,11 @@ const Component: React.FunctionComponent<
           href="https://github.com/dask"
         />
         <OSS.Component
+          owner="delta-incubator"
+          pinned="delta-sharing-rs"
+          href="https://github.com/delta-incubator"
+        />
+        <OSS.Component
           owner="kotosiro"
           pinned="sharing"
           href="https://github.com/kotosiro"
