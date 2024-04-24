@@ -38,11 +38,6 @@ const Component: React.FunctionComponent<
           pinned="delta-sharing-rs"
           href="https://github.com/delta-incubator"
         />
-        <OSS.Component
-          owner="kotosiro"
-          pinned="sharing"
-          href="https://github.com/kotosiro"
-        />
       </Chakra.SimpleGrid>
       <Chakra.Heading as="h3" fontSize={20} mb={4} variant="section-title">
         Personal Projects
